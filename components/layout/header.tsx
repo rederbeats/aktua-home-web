@@ -22,9 +22,16 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-black/10 bg-white/95 shadow-[0_8px_30px_rgba(17,17,17,0.05)] backdrop-blur">
-      <div className="container flex min-h-16 items-center justify-between gap-4 py-2">
+      <div className="container flex min-h-14 items-center justify-between gap-4 py-2">
         <Link href="/" className="flex items-center gap-3" onClick={closeMenu}>
-          <Image src="/assets/aktua-home-logo-header.png" alt="AKTUA HOME" width={154} height={64} className="h-11 w-auto md:h-12" priority />
+          <Image
+            src="/assets/aktua-home-logo-header-transparent.png"
+            alt="AKTUA HOME"
+            width={154}
+            height={64}
+            className="h-9 w-auto md:h-11"
+            priority
+          />
         </Link>
 
         <nav className="hidden items-center gap-1 rounded-full border border-black/10 bg-neutral-50 p-1 text-sm font-bold text-neutral-700 md:flex">

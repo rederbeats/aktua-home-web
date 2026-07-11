@@ -70,7 +70,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                 Valorar mi vivienda
               </Link>
             </div>
-            <div className="mt-8 grid max-w-2xl grid-cols-3 gap-3 text-center text-sm md:text-left">
+            <div className="mt-8 grid max-w-2xl grid-cols-3 gap-2 text-center md:gap-3 md:text-left">
               <HeroStat value="+ claro" label="Precio y estrategia" />
               <HeroStat value="24/7" label="Captacion online" />
               <HeroStat value="1 a 1" label="Acompanamiento" />
@@ -186,9 +186,9 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
 
 function HeroStat({ value, label }: { value: string; label: string }) {
   return (
-    <div className="rounded-lg border border-white/15 bg-white/10 p-3 backdrop-blur">
-      <strong className="block text-lg font-black text-white">{value}</strong>
-      <span className="mt-1 block text-xs font-semibold text-white/70">{label}</span>
+    <div className="min-w-0 rounded-lg border border-white/15 bg-white/10 p-2 backdrop-blur md:p-3">
+      <strong className="block text-base font-black leading-tight text-white md:text-lg">{value}</strong>
+      <span className="mt-1 block break-words text-[11px] font-semibold leading-tight text-white/70 md:text-xs">{label}</span>
     </div>
   );
 }

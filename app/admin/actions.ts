@@ -1,0 +1,375 @@
+"use server";
+
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import { z } from "zod";
+import { createAdminClient } from "@/lib/supabase/admin";
+import { createClient } from "@/lib/supabase/server";
+import { slugify } from "@/lib/utils/slugify";
+
+const loginSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(6)
+});
+
+const propertyFormSchema = z.object({
+  internal_reference: z.string().min(1),
+  title: z.string().min(3),
+  description: z.string().optional(),
+  property_type: z.string().min(1),
+  operation: z.enum(["sale", "rent"]),
+  price: z.coerce.number().nonnegative().optional(),
+  public_address: z.string().optional(),
+  province: z.string().optional(),
+  municipality: z.string().optional(),
+  neighborhood: z.string().optional(),
+  built_area: z.coerce.number().nonnegative().optional(),
+  bedrooms: z.coerce.number().int().nonnegative().optional(),
+  bathrooms: z.coerce.number().int().nonnegative().optional(),
+  has_elevator: z.coerce.boolean().default(false),
+  has_terrace: z.coerce.boolean().default(false),
+  has_garage: z.coerce.boolean().default(false),
+  has_storage_room: z.coerce.boolean().default(false),
+  has_pool: z.coerce.boolean().default(false),
+  status: z.enum(["available", "reserved", "sold"]),
+  is_featured: z.coerce.boolean().default(false),
+  publish: z.coerce.boolean().default(false),
+  tags: z.string().optional()
+});
+
+const blogPostFormSchema = z.object({
+  title: z.string().min(3),
+  excerpt: z.string().optional(),
+  content: z.string().optional(),
+  status: z.enum(["draft", "published"]),
+  seo_title: z.string().optional(),
+  seo_description: z.string().optional(),
+  tags: z.string().optional()
+});
+
+export async function signInAction(formData: FormData) {
+  const parsed = loginSchema.safeParse(Object.fromEntries(formData));
+
+  if (!parsed.success) {
+    redirect("/login?error=invalid");
+  }
+
+  const supabase = await createClient();
+  const { error } = await supabase.auth.signInWithPassword(parsed.data);
+
+  if (error) {
+    redirect(`/login?error=${encodeURIComponent(error.message)}`);
+  }
+
+  redirect("/admin/dashboard");
+}
+
+export async function signOutAction() {
+  const supabase = await createClient();
+  await supabase.auth.signOut();
+  redirect("/login");
+}
+
+export async function createPropertyAction(formData: FormData) {
+  const parsed = propertyFormSchema.safeParse(Object.fromEntries(formData));
+  const files = getImageFiles(formData);
+
+  if (!parsed.success) {
+    redirect("/admin/properties/new?error=invalid");
+  }
+
+  const values = parsed.data;
+  const supabase = await createClient();
+  const slug = slugify(`${values.title}-${values.internal_reference}`);
+  const now = new Date().toISOString();
+
+  const { data: property, error } = await supabase
+    .from("properties")
+    .insert({
+      internal_reference: values.internal_reference,
+      slug,
+      title: values.title,
+      description: emptyToNull(values.description),
+      property_type: values.property_type,
+      operation: values.operation,
+      price: values.price || null,
+      public_address: emptyToNull(values.public_address),
+      province: emptyToNull(values.province),
+      municipality: emptyToNull(values.municipality),
+      neighborhood: emptyToNull(values.neighborhood),
+      built_area: values.built_area || null,
+      bedrooms: values.bedrooms || null,
+      bathrooms: values.bathrooms || null,
+      has_elevator: values.has_elevator,
+      has_terrace: values.has_terrace,
+      has_garage: values.has_garage,
+      has_storage_room: values.has_storage_room,
+      has_pool: values.has_pool,
+      status: values.status,
+      is_featured: values.is_featured,
+      published_at: values.publish ? now : null,
+      tags: splitTags(values.tags)
+    })
+    .select("id")
+    .single();
+
+  if (error) {
+    redirect(`/admin/properties/new?error=${encodeURIComponent(error.message)}`);
+  }
+
+  if (files.length > 0 && property?.id) {
+    const uploadError = await uploadImagesForProperty(property.id, files, 0);
+
+    if (uploadError) {
+      redirect(`/admin/properties/${property.id}/images?error=${encodeURIComponent(uploadError)}`);
+    }
+  }
+
+  revalidatePath("/admin/properties");
+  revalidatePath("/comprar");
+  redirect(property?.id ? `/admin/properties/${property.id}/images?success=created` : "/admin/properties");
+}
+
+export async function updatePropertyAction(formData: FormData) {
+  const propertyId = String(formData.get("property_id") ?? "");
+  const parsed = propertyFormSchema.safeParse(Object.fromEntries(formData));
+
+  if (!z.string().uuid().safeParse(propertyId).success) {
+    redirect("/admin/properties?error=invalid-property");
+  }
+
+  if (!parsed.success) {
+    redirect(`/admin/properties/${propertyId}/edit?error=invalid`);
+  }
+
+  const values = parsed.data;
+  const supabase = await createClient();
+
+  const { error } = await supabase
+    .from("properties")
+    .update({
+      internal_reference: values.internal_reference,
+      slug: slugify(`${values.title}-${values.internal_reference}`),
+      title: values.title,
+      description: emptyToNull(values.description),
+      property_type: values.property_type,
+      operation: values.operation,
+      price: values.price || null,
+      public_address: emptyToNull(values.public_address),
+      province: emptyToNull(values.province),
+      municipality: emptyToNull(values.municipality),
+      neighborhood: emptyToNull(values.neighborhood),
+      built_area: values.built_area || null,
+      bedrooms: values.bedrooms || null,
+      bathrooms: values.bathrooms || null,
+      has_elevator: values.has_elevator,
+      has_terrace: values.has_terrace,
+      has_garage: values.has_garage,
+      has_storage_room: values.has_storage_room,
+      has_pool: values.has_pool,
+      status: values.status,
+      is_featured: values.is_featured,
+      published_at: values.publish ? new Date().toISOString() : null,
+      tags: splitTags(values.tags),
+      updated_at: new Date().toISOString()
+    })
+    .eq("id", propertyId);
+
+  if (error) {
+    redirect(`/admin/properties/${propertyId}/edit?error=${encodeURIComponent(error.message)}`);
+  }
+
+  revalidatePath("/admin/properties");
+  revalidatePath("/comprar");
+  redirect("/admin/properties");
+}
+
+export async function togglePropertyPublicationAction(formData: FormData) {
+  const propertyId = String(formData.get("property_id") ?? "");
+  const nextState = String(formData.get("next_state") ?? "");
+
+  if (!z.string().uuid().safeParse(propertyId).success) {
+    redirect("/admin/properties?error=invalid-property");
+  }
+
+  const supabase = await createClient();
+  const { error } = await supabase
+    .from("properties")
+    .update({
+      published_at: nextState === "publish" ? new Date().toISOString() : null,
+      updated_at: new Date().toISOString()
+    })
+    .eq("id", propertyId);
+
+  if (error) {
+    redirect(`/admin/properties?error=${encodeURIComponent(error.message)}`);
+  }
+
+  revalidatePath("/admin/properties");
+  revalidatePath("/comprar");
+  redirect("/admin/properties");
+}
+
+export async function deletePropertyAction(formData: FormData) {
+  const propertyId = String(formData.get("property_id") ?? "");
+
+  if (!z.string().uuid().safeParse(propertyId).success) {
+    redirect("/admin/properties?error=invalid-property");
+  }
+
+  const supabase = await createClient();
+  const {
+    data: { user }
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/login");
+  }
+
+  const admin = createAdminClient();
+  const { data: images } = await admin.from("property_images").select("storage_path").eq("property_id", propertyId);
+
+  if (images?.length) {
+    await admin.storage.from("property-images").remove(images.map((image) => image.storage_path));
+  }
+
+  const { error } = await admin.from("properties").delete().eq("id", propertyId);
+
+  if (error) {
+    redirect(`/admin/properties?error=${encodeURIComponent(error.message)}`);
+  }
+
+  revalidatePath("/admin/properties");
+  revalidatePath("/comprar");
+  redirect("/admin/properties");
+}
+
+export async function createBlogPostAction(formData: FormData) {
+  const parsed = blogPostFormSchema.safeParse(Object.fromEntries(formData));
+
+  if (!parsed.success) {
+    redirect("/admin/blog/new?error=invalid");
+  }
+
+  const values = parsed.data;
+  const supabase = await createClient();
+
+  const { error } = await supabase.from("blog_posts").insert({
+    slug: slugify(values.title),
+    title: values.title,
+    excerpt: emptyToNull(values.excerpt),
+    content: emptyToNull(values.content),
+    status: values.status,
+    seo_title: emptyToNull(values.seo_title),
+    seo_description: emptyToNull(values.seo_description),
+    published_at: values.status === "published" ? new Date().toISOString() : null
+  });
+
+  if (error) {
+    redirect(`/admin/blog/new?error=${encodeURIComponent(error.message)}`);
+  }
+
+  revalidatePath("/admin/blog");
+  revalidatePath("/blog");
+  redirect("/admin/blog");
+}
+
+export async function uploadPropertyImagesAction(formData: FormData) {
+  const propertyId = String(formData.get("property_id") ?? "");
+  const files = getImageFiles(formData);
+
+  if (!z.string().uuid().safeParse(propertyId).success) {
+    redirect("/admin/properties?error=invalid-property");
+  }
+
+  if (files.length === 0) {
+    redirect(`/admin/properties/${propertyId}/images?error=${encodeURIComponent("Selecciona al menos una imagen.")}`);
+  }
+
+  const supabase = await createClient();
+  const {
+    data: { user }
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/login");
+  }
+
+  const admin = createAdminClient();
+  const { data: existingImages } = await admin
+    .from("property_images")
+    .select("id")
+    .eq("property_id", propertyId)
+    .order("sort_order", { ascending: false });
+
+  const sortOrder = existingImages?.length ?? 0;
+  const uploadError = await uploadImagesForProperty(propertyId, files, sortOrder);
+
+  if (uploadError) {
+    redirect(`/admin/properties/${propertyId}/images?error=${encodeURIComponent(uploadError)}`);
+  }
+
+  revalidatePath(`/admin/properties/${propertyId}/images`);
+  revalidatePath("/admin/properties");
+  revalidatePath("/comprar");
+  redirect(`/admin/properties/${propertyId}/images?success=uploaded`);
+}
+
+function getImageFiles(formData: FormData) {
+  return formData.getAll("images").filter((item): item is File => item instanceof File && item.size > 0);
+}
+
+async function uploadImagesForProperty(propertyId: string, files: File[], initialSortOrder: number) {
+  const admin = createAdminClient();
+  let sortOrder = initialSortOrder;
+
+  for (const file of files) {
+    if (!file.type.startsWith("image/")) {
+      return "Solo se pueden subir archivos de imagen.";
+    }
+
+    const extension = file.name.split(".").pop()?.toLowerCase() || "jpg";
+    const safeName = slugify(file.name.replace(/\.[^.]+$/, "")) || "foto";
+    const storagePath = `${propertyId}/${Date.now()}-${sortOrder}-${safeName}.${extension}`;
+    const buffer = Buffer.from(await file.arrayBuffer());
+
+    const { error: uploadError } = await admin.storage.from("property-images").upload(storagePath, buffer, {
+      contentType: file.type,
+      upsert: false
+    });
+
+    if (uploadError) {
+      return uploadError.message;
+    }
+
+    const { error: insertError } = await admin.from("property_images").insert({
+      property_id: propertyId,
+      storage_path: storagePath,
+      alt_text: file.name,
+      sort_order: sortOrder,
+      is_cover: sortOrder === 0
+    });
+
+    if (insertError) {
+      return insertError.message;
+    }
+
+    sortOrder += 1;
+  }
+
+  return null;
+}
+
+function emptyToNull(value?: string) {
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : null;
+}
+
+function splitTags(value?: string) {
+  return (
+    value
+      ?.split(",")
+      .map((tag) => tag.trim())
+      .filter(Boolean) ?? []
+  );
+}

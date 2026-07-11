@@ -17,6 +17,10 @@ function isInteractiveElement(element: Element | null) {
     return false;
   }
 
+  if (target.closest("[data-no-loading]")) {
+    return false;
+  }
+
   if (target instanceof HTMLButtonElement || target instanceof HTMLInputElement) {
     return !target.disabled;
   }

@@ -47,6 +47,7 @@ export function Header() {
 
         <button
           type="button"
+          data-no-loading
           className="flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white text-brand-dark shadow-sm transition hover:border-brand-red hover:text-brand-red md:hidden"
           aria-label={isMenuOpen ? "Cerrar menu" : "Abrir menu"}
           aria-expanded={isMenuOpen}

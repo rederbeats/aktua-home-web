@@ -29,7 +29,35 @@ button {
   font: inherit;
 }
 
+button,
+input[type="submit"],
+input[type="button"],
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:active,
+input[type="submit"]:active,
+input[type="button"]:active,
+a:active {
+  transform: translateY(1px);
+}
+
 .container {
   width: min(1120px, calc(100% - 32px));
   margin-inline: auto;
+}
+
+@keyframes loading-bar {
+  0% {
+    transform: translateX(-120%);
+  }
+
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+.animate-loading-bar {
+  animation: loading-bar 1s ease-in-out infinite;
 }

@@ -14,11 +14,11 @@ export default async function ComprarPage({ searchParams }: { searchParams: Prom
   const properties = await getPublishedProperties(filters);
 
   return (
-    <section className="container py-10">
-      <div className="mb-7">
-        <p className="text-sm font-bold uppercase text-brand-red">Portal inmobiliario</p>
-        <h1 className="mt-2 text-4xl font-black">Comprar vivienda</h1>
-        <p className="mt-3 max-w-2xl text-neutral-600">
+    <section className="container py-10 md:py-14">
+      <div className="mb-7 rounded-lg border border-black/10 bg-white p-6 shadow-soft md:p-8">
+        <p className="section-kicker">Portal inmobiliario</p>
+        <h1 className="mt-2 text-4xl font-black leading-tight md:text-6xl">Comprar vivienda</h1>
+        <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
           Inmuebles publicados por AKTUA HOME. Puedes activar o desactivar la visibilidad desde el panel de administracion.
         </p>
       </div>

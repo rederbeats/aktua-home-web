@@ -1,20 +1,23 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export function Footer() {
   return (
-    <footer className="mt-16 border-t border-black/10 bg-white">
-      <div className="container grid gap-8 py-10 md:grid-cols-[1fr_auto]">
+    <footer className="mt-16 border-t border-black/10 bg-brand-dark text-white">
+      <div className="container grid gap-8 py-10 md:grid-cols-[1fr_auto] md:py-12">
         <div>
-          <strong className="text-lg">AKTUA HOME</strong>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-neutral-600">
+          <div className="inline-flex rounded-md bg-white p-2">
+            <Image src="/assets/aktua-home-logo.png" alt="AKTUA HOME" width={126} height={49} />
+          </div>
+          <p className="mt-4 max-w-2xl text-sm leading-6 text-white/70">
             Inmobiliaria preparada para publicar inmuebles, captar propietarios y crecer hacia integraciones con Idealista o CRM.
           </p>
         </div>
-        <nav className="grid gap-2 text-sm text-neutral-600">
-          <Link href="/sobre-aktua-home">Sobre AKTUA HOME</Link>
-          <Link href="/politica-privacidad">Politica de privacidad</Link>
-          <Link href="/politica-cookies">Politica de cookies</Link>
-          <Link href="/aviso-legal">Aviso legal</Link>
+        <nav className="grid gap-3 text-sm font-semibold text-white/75">
+          <Link href="/sobre-aktua-home" className="transition hover:text-white">Sobre AKTUA HOME</Link>
+          <Link href="/politica-privacidad" className="transition hover:text-white">Politica de privacidad</Link>
+          <Link href="/politica-cookies" className="transition hover:text-white">Politica de cookies</Link>
+          <Link href="/aviso-legal" className="transition hover:text-white">Aviso legal</Link>
         </nav>
       </div>
     </footer>

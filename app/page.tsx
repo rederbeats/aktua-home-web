@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, Calculator, Home, KeyRound, MapPin, MessageCircle, Search, ShieldCheck } from "lucide-react";
+import { ArrowRight, Calculator, FileText, Home, KeyRound, Landmark, Languages, MapPin, MessageCircle, Scale } from "lucide-react";
 import { LeadForm } from "@/components/forms/lead-form";
 import { PropertyCard } from "@/components/properties/property-card";
 import { PropertySearch } from "@/components/properties/property-search";
@@ -8,27 +8,37 @@ import { getPublishedProperties } from "@/lib/properties/public-properties";
 
 const services = [
   {
-    title: "Compra con criterio",
-    body: "Comparamos zona, precio, estado de la vivienda y margen de negociacion antes de dar el paso.",
-    icon: Search
+    title: "Compraventa de inmuebles",
+    body: "Asesoramiento en compra y venta, gestion integral de la operacion y acompanamiento hasta la firma.",
+    icon: Home
   },
   {
-    title: "Venta bien preparada",
-    body: "Valoracion, estrategia de salida, presentacion del inmueble y seguimiento comercial hasta la firma.",
-    icon: BadgeCheck
+    title: "Financiacion hasta el 95%",
+    body: "Estudio hipotecario, gestion de financiacion y asesoramiento personalizado para compradores.",
+    icon: Landmark
   },
   {
-    title: "Financiacion y gestiones",
-    body: "Coordinamos documentacion, visitas, ofertas, hipoteca y pasos clave para que no improvises.",
-    icon: ShieldCheck
+    title: "Documentacion y fiscalidad",
+    body: "Escrituras, pagos, plusvalia, ITP, obra nueva y divisiones horizontales.",
+    icon: FileText
+  },
+  {
+    title: "Servicios juridicos",
+    body: "Herencias, testamentos, donaciones, procedimientos familiares y asesoramiento legal.",
+    icon: Scale
+  },
+  {
+    title: "Traducciones juradas",
+    body: "Traducciones oficiales para tramites legales, fiscales e inmobiliarios.",
+    icon: Languages
   }
 ];
 
 const steps = [
-  "Analizamos tu objetivo y tu zona.",
-  "Preparamos una estrategia clara.",
-  "Publicamos, filtramos interesados y hacemos seguimiento.",
-  "Te acompanamos hasta la firma."
+  "Analizamos tu objetivo y la situacion del inmueble.",
+  "Revisamos financiacion, documentacion e impuestos.",
+  "Gestionamos la operacion y coordinamos los tramites necesarios.",
+  "Te acompanamos hasta la firma y el cierre."
 ];
 
 export default async function HomePage({ searchParams }: { searchParams: Promise<{ lead?: string }> }) {
@@ -57,10 +67,10 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
               AKTUA HOME inmobiliaria
             </p>
             <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.02] sm:text-5xl md:text-7xl">
-              Vende mejor. Compra con calma. Decide con datos.
+              Compra, vende y firma con todo bajo control.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-white/85 md:text-lg md:leading-8">
-              Te acompanamos con valoracion, marketing, visitas filtradas, negociacion y documentacion para que cada paso tenga sentido.
+              Te acompanamos en compraventa, financiacion hipotecaria, gestion documental, fiscalidad, servicios juridicos y traducciones juradas.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/comprar" className="inline-flex h-12 items-center gap-2 rounded-md bg-brand-red px-5 font-black text-white shadow-[0_18px_45px_rgba(200,16,34,0.35)] transition hover:-translate-y-0.5 hover:bg-red-700">
@@ -71,9 +81,9 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
               </Link>
             </div>
             <div className="mt-8 grid max-w-2xl grid-cols-3 gap-2 text-center md:gap-3 md:text-left">
-              <HeroStat value="+ claro" label="Precio y estrategia" />
-              <HeroStat value="24/7" label="Captacion online" />
-              <HeroStat value="1 a 1" label="Acompanamiento" />
+              <HeroStat value="Integral" label="Gestion completa" />
+              <HeroStat value="95%" label="Financiacion" />
+              <HeroStat value="Legal" label="Fiscal y juridico" />
             </div>
           </div>
 
@@ -83,7 +93,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                 <MessageCircle size={22} />
               </div>
               <div>
-                <h2 className="text-xl font-black">Hablemos de tu vivienda</h2>
+                <h2 className="text-xl font-black">Hablemos de tu operacion</h2>
                 <p className="text-sm text-neutral-600">Te respondemos con una primera orientacion.</p>
               </div>
             </div>
@@ -96,10 +106,10 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
 
       <section className="relative z-10 -mt-4 pb-6 md:-mt-8">
         <div className="container grid gap-3 rounded-lg border border-black/10 bg-white p-3 shadow-[0_22px_70px_rgba(17,17,17,0.12)] md:grid-cols-4">
-          <TrustItem icon={<MapPin size={20} />} title="Zona y mercado" body="Precio, demanda y competencia." />
-          <TrustItem icon={<Home size={20} />} title="Presentacion cuidada" body="Fotos, ficha y argumentos de venta." />
-          <TrustItem icon={<KeyRound size={20} />} title="Visitas filtradas" body="Interesados reales y seguimiento." />
-          <TrustItem icon={<Calculator size={20} />} title="Operacion clara" body="Documentacion y pasos controlados." />
+          <TrustItem icon={<MapPin size={20} />} title="Compraventa" body="Compra, venta y seguimiento." />
+          <TrustItem icon={<Home size={20} />} title="Financiacion" body="Hipotecas de hasta el 95%." />
+          <TrustItem icon={<KeyRound size={20} />} title="Documentacion" body="Escrituras, pagos e impuestos." />
+          <TrustItem icon={<Calculator size={20} />} title="Juridico" body="Herencias, donaciones y tramites." />
         </div>
       </section>
 
@@ -115,15 +125,15 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         <div className="container grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
             <p className="section-kicker">Servicios</p>
-            <h2 className="mt-2 text-3xl font-black leading-tight md:text-5xl">Una inmobiliaria para tomar mejores decisiones.</h2>
+            <h2 className="mt-2 text-3xl font-black leading-tight md:text-5xl">Servicios inmobiliarios, financieros y juridicos en un solo lugar.</h2>
             <p className="mt-4 leading-8 text-neutral-600">
-              No se trata solo de publicar un anuncio. Se trata de preparar bien la operacion, generar confianza y acompanarte en cada paso importante.
+              No se trata solo de vender o comprar una vivienda. Se trata de tener controlados la financiacion, los documentos, los impuestos y los tramites legales.
             </p>
             <Link href="/servicios" className="mt-6 inline-flex h-11 items-center gap-2 rounded-md bg-brand-dark px-4 font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-brand-red">
               Ver servicios <ArrowRight size={17} />
             </Link>
           </div>
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => {
               const Icon = service.icon;
               return (

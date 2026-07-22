@@ -5,7 +5,7 @@ import { getPublishedProperties, type PropertyFilters } from "@/lib/properties/p
 
 export const metadata: Metadata = {
   title: "Comprar vivienda",
-  description: "Inmuebles en venta y alquiler publicados por AKTUA HOME."
+  description: "Viviendas en venta y alquiler con asesoramiento integral de AKTUA HOME."
 };
 
 export default async function ComprarPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
@@ -19,7 +19,7 @@ export default async function ComprarPage({ searchParams }: { searchParams: Prom
         <p className="section-kicker">Portal inmobiliario</p>
         <h1 className="mt-2 text-4xl font-black leading-tight md:text-6xl">Comprar vivienda</h1>
         <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
-          Inmuebles publicados por AKTUA HOME. Puedes activar o desactivar la visibilidad desde el panel de administracion.
+          Encuentra viviendas en venta y alquiler con el acompanamiento de AKTUA HOME durante todo el proceso.
         </p>
       </div>
       <PropertySearch filters={filters} />
@@ -30,7 +30,7 @@ export default async function ComprarPage({ searchParams }: { searchParams: Prom
       </div>
       {!properties.length ? (
         <div className="mt-8 rounded-lg border border-black/10 bg-white p-8 text-center text-neutral-500">
-          Todavia no hay inmuebles publicados.
+          No encontramos viviendas con esos filtros. Contacta con nosotros y te ayudamos a buscar la opcion adecuada.
         </div>
       ) : null}
     </section>

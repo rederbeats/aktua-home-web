@@ -79,7 +79,7 @@ export async function getPublishedProperties(filters: PropertyFilters = {}): Pro
   let query = supabase
     .from("properties")
     .select(
-      "id, slug, title, operation, property_type, price, municipality, neighborhood, bedrooms, bathrooms, built_area, has_elevator, has_terrace, has_garage, has_storage_room, has_pool, is_featured, published_at, property_images(id, storage_path, alt_text, sort_order, is_cover)"
+      "id, slug, title, operation, property_type, price, public_address, municipality, neighborhood, bedrooms, bathrooms, built_area, has_elevator, has_terrace, has_garage, has_storage_room, has_pool, is_featured, published_at, property_images(id, storage_path, alt_text, sort_order, is_cover)"
     )
     .in("status", ["available", "reserved"])
     .not("published_at", "is", null);
@@ -152,6 +152,7 @@ export async function getPublishedPropertyBySlug(slug: string): Promise<PublicPr
 
 function mapPropertyCard(property: RawProperty): PublicPropertyCard {
   const cover = getPropertyImages(property).find((image) => image.is_cover) ?? getPropertyImages(property)[0];
+  const location = getDisplayLocation(property);
 
   return {
     id: property.id,
@@ -160,8 +161,8 @@ function mapPropertyCard(property: RawProperty): PublicPropertyCard {
     operation: property.operation,
     propertyType: property.property_type,
     price: property.price === null ? null : Number(property.price),
-    municipality: property.municipality ?? "Zona no indicada",
-    neighborhood: property.neighborhood ?? undefined,
+    municipality: location.municipality,
+    neighborhood: location.neighborhood,
     bedrooms: property.bedrooms ?? undefined,
     bathrooms: property.bathrooms ?? undefined,
     builtArea: property.built_area ? Number(property.built_area) : undefined,
@@ -173,6 +174,23 @@ function mapPropertyCard(property: RawProperty): PublicPropertyCard {
     imageUrl: cover ? publicImageUrl(cover.storage_path) : fallbackImage,
     isFeatured: property.is_featured
   };
+}
+
+function getDisplayLocation(property: RawProperty) {
+  const municipality = property.municipality?.trim();
+  const neighborhood = property.neighborhood?.trim();
+  const publicAddress = property.public_address?.trim();
+  const primary = municipality || neighborhood || publicAddress || "Zona no indicada";
+  const secondary =
+    municipality && neighborhood && normalizeLocation(municipality) !== normalizeLocation(neighborhood)
+      ? neighborhood
+      : undefined;
+
+  return { municipality: primary, neighborhood: secondary };
+}
+
+function normalizeLocation(value: string) {
+  return value.trim().toLocaleLowerCase("es-ES");
 }
 
 function featureToColumn(feature: string) {
@@ -193,3 +211,4 @@ function publicImageUrl(path: string) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   return url ? `${url}/storage/v1/object/public/property-images/${path}` : fallbackImage;
 }
+

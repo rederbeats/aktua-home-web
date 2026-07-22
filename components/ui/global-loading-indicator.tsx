@@ -81,7 +81,13 @@ export function GlobalLoadingIndicator() {
       }
     };
 
-    const handleSubmit = () => startLoading();
+    const handleSubmit = (event: SubmitEvent) => {
+      if (event.target instanceof Element && event.target.closest("[data-no-loading]")) {
+        return;
+      }
+
+      startLoading();
+    };
 
     document.addEventListener("click", handleClick, { capture: true });
     document.addEventListener("submit", handleSubmit, { capture: true });

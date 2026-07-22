@@ -1,8 +1,10 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { uploadPropertyImagesAction } from "@/app/admin/actions";
+import { ArrowDown, ArrowUp, Star } from "lucide-react";
+import { movePropertyImageAction, setPropertyImageCoverAction } from "@/app/admin/actions";
+import { PropertyImageUploadForm } from "@/components/admin/property-image-upload-form";
 import { createAdminClient } from "@/lib/supabase/admin";
 
 export const metadata: Metadata = {
@@ -43,30 +45,36 @@ export default async function PropertyImagesPage({
       <p className="mt-2 text-sm text-neutral-500">Referencia {property.internal_reference}</p>
 
       {error ? <Notice tone="error" message={decodeURIComponent(error)} /> : null}
-      {success ? <Notice tone="success" message="Fotos subidas correctamente." /> : null}
+      {success ? <Notice tone="success" message={successMessage(success)} /> : null}
 
-      <form action={uploadPropertyImagesAction} className="mt-6 grid gap-4 rounded-lg border border-black/10 bg-white p-5 shadow-soft">
-        <input type="hidden" name="property_id" value={property.id} />
-        <label className="grid gap-2 text-sm font-semibold text-neutral-700">
-          Subir fotos
-          <input className="rounded-md border border-black/10 p-3" name="images" type="file" accept="image/*" multiple required />
-        </label>
-        <p className="text-sm leading-6 text-neutral-500">
-          Puedes seleccionar varias imagenes a la vez. Se guardaran en Supabase Storage en el bucket `property-images`.
-        </p>
-        <button className="h-11 w-fit rounded-md bg-brand-red px-5 font-bold text-white" type="submit">
-          Subir fotos
-        </button>
-      </form>
+      <PropertyImageUploadForm propertyId={property.id} />
 
       <div className="mt-8 grid gap-4 md:grid-cols-3">
-        {imagesWithUrls.map((image) => (
+        {imagesWithUrls.map((image, index) => (
           <article key={image.id} className="overflow-hidden rounded-lg border border-black/10 bg-white shadow-soft">
             <div className="relative aspect-[4/3] bg-neutral-100">
               <Image src={image.publicUrl} alt={image.alt_text || property.title} fill className="object-cover" sizes="(min-width: 768px) 33vw, 100vw" />
               {image.is_cover ? <span className="absolute left-3 top-3 rounded-md bg-brand-red px-2 py-1 text-xs font-bold text-white">Portada</span> : null}
             </div>
-            <div className="p-3 text-sm text-neutral-600">Orden {image.sort_order}</div>
+            <div className="grid gap-3 p-3 text-sm text-neutral-600">
+              <div className="flex items-center justify-between gap-3">
+                <span className="font-bold text-neutral-800">Orden {index + 1}</span>
+                <span className="text-xs text-neutral-400">{image.alt_text || "Foto"}</span>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <ImageMoveButton propertyId={property.id} imageId={image.id} direction="up" disabled={index === 0} label="Subir" />
+                <ImageMoveButton propertyId={property.id} imageId={image.id} direction="down" disabled={index === imagesWithUrls.length - 1} label="Bajar" />
+              </div>
+              {!image.is_cover ? (
+                <form action={setPropertyImageCoverAction}>
+                  <input type="hidden" name="property_id" value={property.id} />
+                  <input type="hidden" name="image_id" value={image.id} />
+                  <button type="submit" className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-md border border-black/10 bg-white px-3 font-bold text-brand-red hover:border-brand-red">
+                    <Star size={16} /> Usar como portada
+                  </button>
+                </form>
+              ) : null}
+            </div>
           </article>
         ))}
       </div>
@@ -76,7 +84,31 @@ export default async function PropertyImagesPage({
   );
 }
 
+function ImageMoveButton({ propertyId, imageId, direction, disabled, label }: { propertyId: string; imageId: string; direction: "up" | "down"; disabled: boolean; label: string }) {
+  const Icon = direction === "up" ? ArrowUp : ArrowDown;
+
+  return (
+    <form action={movePropertyImageAction}>
+      <input type="hidden" name="property_id" value={propertyId} />
+      <input type="hidden" name="image_id" value={imageId} />
+      <input type="hidden" name="direction" value={direction} />
+      <button type="submit" disabled={disabled} className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-md bg-neutral-100 px-3 font-bold text-neutral-700 hover:text-brand-red disabled:cursor-not-allowed disabled:opacity-40">
+        <Icon size={16} /> {label}
+      </button>
+    </form>
+  );
+}
+
 function Notice({ tone, message }: { tone: "error" | "success"; message: string }) {
   const styles = tone === "error" ? "border-red-200 bg-red-50 text-red-700" : "border-green-200 bg-green-50 text-green-700";
   return <div className={`mt-5 rounded-md border p-3 text-sm font-semibold ${styles}`}>{message}</div>;
+}
+
+function successMessage(success: string) {
+  return {
+    created: "Fotos subidas correctamente.",
+    uploaded: "Fotos subidas correctamente.",
+    ordered: "Orden de fotos actualizado.",
+    cover: "Foto de portada actualizada."
+  }[success] ?? "Cambios guardados correctamente.";
 }

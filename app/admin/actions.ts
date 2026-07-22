@@ -296,13 +296,7 @@ export async function uploadPropertyImagesAction(formData: FormData) {
   }
 
   const admin = createAdminClient();
-  const { data: existingImages } = await admin
-    .from("property_images")
-    .select("id")
-    .eq("property_id", propertyId)
-    .order("sort_order", { ascending: false });
-
-  const sortOrder = existingImages?.length ?? 0;
+  const sortOrder = await getNextImageSortOrder(admin, propertyId);
   const uploadError = await uploadImagesForProperty(propertyId, files, sortOrder);
 
   if (uploadError) {
@@ -313,6 +307,149 @@ export async function uploadPropertyImagesAction(formData: FormData) {
   revalidatePath("/admin/properties");
   revalidatePath("/comprar");
   redirect(`/admin/properties/${propertyId}/images?success=uploaded`);
+}
+
+export async function uploadPropertyImageInlineAction(
+  formData: FormData
+): Promise<{ ok: true; uploaded: number } | { ok: false; error: string }> {
+  const propertyId = String(formData.get("property_id") ?? "");
+  const files = getImageFiles(formData);
+
+  if (!z.string().uuid().safeParse(propertyId).success) {
+    return { ok: false, error: "Inmueble no valido." };
+  }
+
+  if (files.length === 0) {
+    return { ok: false, error: "Selecciona al menos una imagen." };
+  }
+
+  const supabase = await createClient();
+  const {
+    data: { user }
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return { ok: false, error: "Sesion caducada. Vuelve a iniciar sesion." };
+  }
+
+  const admin = createAdminClient();
+  const sortOrder = await getNextImageSortOrder(admin, propertyId);
+  const uploadError = await uploadImagesForProperty(propertyId, files, sortOrder);
+
+  if (uploadError) {
+    return { ok: false, error: uploadError };
+  }
+
+  revalidatePath(`/admin/properties/${propertyId}/images`);
+  revalidatePath("/admin/properties");
+  revalidatePath("/comprar");
+
+  return { ok: true, uploaded: files.length };
+}
+
+export async function movePropertyImageAction(formData: FormData) {
+  const propertyId = String(formData.get("property_id") ?? "");
+  const imageId = String(formData.get("image_id") ?? "");
+  const direction = String(formData.get("direction") ?? "");
+
+  if (!z.string().uuid().safeParse(propertyId).success || !z.string().uuid().safeParse(imageId).success) {
+    redirect("/admin/properties?error=invalid-image");
+  }
+
+  if (direction !== "up" && direction !== "down") {
+    redirect(`/admin/properties/${propertyId}/images?error=${encodeURIComponent("Direccion no valida.")}`);
+  }
+
+  const supabase = await createClient();
+  const {
+    data: { user }
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/login");
+  }
+
+  const admin = createAdminClient();
+  const { data: images, error } = await admin
+    .from("property_images")
+    .select("id, sort_order")
+    .eq("property_id", propertyId)
+    .order("sort_order", { ascending: true });
+
+  if (error || !images?.length) {
+    redirect(`/admin/properties/${propertyId}/images?error=${encodeURIComponent(error?.message || "No se pudieron leer las fotos.")}`);
+  }
+
+  const currentIndex = images.findIndex((image) => image.id === imageId);
+  const targetIndex = direction === "up" ? currentIndex - 1 : currentIndex + 1;
+
+  if (currentIndex < 0 || targetIndex < 0 || targetIndex >= images.length) {
+    redirect(`/admin/properties/${propertyId}/images`);
+  }
+
+  const current = images[currentIndex];
+  const target = images[targetIndex];
+
+  const [currentUpdate, targetUpdate] = await Promise.all([
+    admin.from("property_images").update({ sort_order: target.sort_order }).eq("id", current.id),
+    admin.from("property_images").update({ sort_order: current.sort_order }).eq("id", target.id)
+  ]);
+
+  const updateError = currentUpdate.error || targetUpdate.error;
+
+  if (updateError) {
+    redirect(`/admin/properties/${propertyId}/images?error=${encodeURIComponent(updateError.message)}`);
+  }
+
+  const reordered = [...images];
+  reordered[currentIndex] = target;
+  reordered[targetIndex] = current;
+  const coverError = await setCoverImage(admin, propertyId, reordered[0].id);
+
+  if (coverError) {
+    redirect(`/admin/properties/${propertyId}/images?error=${encodeURIComponent(coverError)}`);
+  }
+
+  revalidatePath(`/admin/properties/${propertyId}/images`);
+  revalidatePath("/admin/properties");
+  revalidatePath("/comprar");
+  redirect(`/admin/properties/${propertyId}/images?success=ordered`);
+}
+
+export async function setPropertyImageCoverAction(formData: FormData) {
+  const propertyId = String(formData.get("property_id") ?? "");
+  const imageId = String(formData.get("image_id") ?? "");
+
+  if (!z.string().uuid().safeParse(propertyId).success || !z.string().uuid().safeParse(imageId).success) {
+    redirect("/admin/properties?error=invalid-image");
+  }
+
+  const supabase = await createClient();
+  const {
+    data: { user }
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/login");
+  }
+
+  const admin = createAdminClient();
+  const { data: image, error } = await admin.from("property_images").select("id").eq("property_id", propertyId).eq("id", imageId).single();
+
+  if (error || !image) {
+    redirect(`/admin/properties/${propertyId}/images?error=${encodeURIComponent(error?.message || "Foto no encontrada.")}`);
+  }
+
+  const coverError = await setCoverImage(admin, propertyId, imageId);
+
+  if (coverError) {
+    redirect(`/admin/properties/${propertyId}/images?error=${encodeURIComponent(coverError)}`);
+  }
+
+  revalidatePath(`/admin/properties/${propertyId}/images`);
+  revalidatePath("/admin/properties");
+  revalidatePath("/comprar");
+  redirect(`/admin/properties/${propertyId}/images?success=cover`);
 }
 
 function getImageFiles(formData: FormData) {
@@ -358,6 +495,29 @@ async function uploadImagesForProperty(propertyId: string, files: File[], initia
   }
 
   return null;
+}
+
+async function getNextImageSortOrder(admin: ReturnType<typeof createAdminClient>, propertyId: string) {
+  const { data } = await admin
+    .from("property_images")
+    .select("sort_order")
+    .eq("property_id", propertyId)
+    .order("sort_order", { ascending: false })
+    .limit(1);
+
+  return Number(data?.[0]?.sort_order ?? -1) + 1;
+}
+
+async function setCoverImage(admin: ReturnType<typeof createAdminClient>, propertyId: string, imageId: string) {
+  const { error: clearError } = await admin.from("property_images").update({ is_cover: false }).eq("property_id", propertyId);
+
+  if (clearError) {
+    return clearError.message;
+  }
+
+  const { error: coverError } = await admin.from("property_images").update({ is_cover: true }).eq("property_id", propertyId).eq("id", imageId);
+
+  return coverError?.message ?? null;
 }
 
 function emptyToNull(value?: string) {

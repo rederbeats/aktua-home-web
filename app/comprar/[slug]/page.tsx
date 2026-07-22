@@ -44,7 +44,7 @@ export default async function PropertyDetailPage({
           <strong className="mt-5 block text-3xl font-black md:text-4xl">
             {property.price ? new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(property.price) : "Consultar precio"}
           </strong>
-          <p className="mt-6 max-w-3xl leading-8 text-neutral-700">{property.description || "Contacta con AKTUA HOME para ampliar informacion sobre este inmueble."}</p>
+          <p className="mt-6 max-w-3xl leading-8 text-neutral-700">{property.description || "Contacta con AKTUA HOME para ampliar información sobre este inmueble."}</p>
           <dl className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             <Fact label="Tipo" value={property.propertyType} />
             <Fact label="Habitaciones" value={property.bedrooms ? `${property.bedrooms}` : "-"} />
@@ -80,7 +80,7 @@ export default async function PropertyDetailPage({
         ) : null}
       </article>
       <aside className="h-fit rounded-lg border border-black/10 bg-white p-5 shadow-[0_24px_70px_rgba(17,17,17,0.12)] lg:sticky lg:top-28">
-        <h2 className="text-xl font-black">Solicitar informacion</h2>
+        <h2 className="text-xl font-black">Solicitar información</h2>
         <p className="mb-4 mt-2 text-sm text-neutral-600">Te responderemos para ampliar detalles o resolver dudas.</p>
         <LeadForm type="information" propertyId={property.id} sourcePath={`/comprar/${property.slug}`} status={lead} />
         <div className="my-6 border-t border-black/10" />

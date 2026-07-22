@@ -3,39 +3,39 @@ import { BadgeCheck, FileText, Home, Landmark, Languages, Scale } from "lucide-r
 
 export const metadata: Metadata = {
   title: "Servicios",
-  description: "Compraventa, financiacion hipotecaria, gestion documental, servicios juridicos y traducciones juradas de AKTUA HOME."
+  description: "Compraventa, financiación hipotecaria, gestión documental, servicios jurídicos y traducciones juradas de AKTUA HOME."
 };
 
 const services = [
   {
     title: "Compraventa de inmuebles",
-    intro: "Asesoramiento en compra y venta con gestion integral de la operacion.",
+    intro: "Asesoramiento en compra y venta con gestión integral de la operación.",
     icon: Home,
-    points: ["Asesoramiento en compra y venta.", "Gestion integral de operaciones.", "Acompanamiento durante todo el proceso."]
+    points: ["Asesoramiento en compra y venta.", "Gestión integral de operaciones.", "Acompañamiento durante todo el proceso."]
   },
   {
-    title: "Financiacion hipotecaria",
-    intro: "Estudiamos tu caso y buscamos una financiacion adaptada a tu perfil.",
+    title: "Financiación hipotecaria",
+    intro: "Estudiamos tu caso y buscamos una financiación adaptada a tu perfil.",
     icon: Landmark,
-    points: ["Prestamos hipotecarios de hasta el 95%.", "Estudio y gestion de financiacion.", "Asesoramiento personalizado."]
+    points: ["Préstamos hipotecarios de hasta el 95%.", "Estudio y gestión de financiación.", "Asesoramiento personalizado."]
   },
   {
-    title: "Gestion documental y fiscal",
-    intro: "Te ayudamos con los tramites que rodean una compraventa o una regularizacion inmobiliaria.",
+    title: "Gestión documental y fiscal",
+    intro: "Te ayudamos con los trámites que rodean una compraventa o una regularización inmobiliaria.",
     icon: FileText,
-    points: ["Escrituras y pagos.", "Plusvalia e Impuesto sobre Transmisiones Patrimoniales (ITP).", "Declaracion de obra nueva y divisiones horizontales."]
+    points: ["Escrituras y pagos.", "Plusvalía e Impuesto sobre Transmisiones Patrimoniales (ITP).", "Declaración de obra nueva y divisiones horizontales."]
   },
   {
-    title: "Servicios juridicos",
-    intro: "Coordinacion y asesoramiento legal para operaciones familiares, patrimoniales e inmobiliarias.",
+    title: "Servicios jurídicos",
+    intro: "Coordinación y asesoramiento legal para operaciones familiares, patrimoniales e inmobiliarias.",
     icon: Scale,
-    points: ["Asesoramiento legal.", "Declaracion de herederos, testamentos y adjudicacion de herencias.", "Donaciones y procedimientos familiares."]
+    points: ["Asesoramiento legal.", "Declaración de herederos, testamentos y adjudicación de herencias.", "Donaciones y procedimientos familiares."]
   },
   {
     title: "Traducciones juradas",
-    intro: "Traducciones oficiales para tramites legales, fiscales e inmobiliarios.",
+    intro: "Traducciones oficiales para trámites legales, fiscales e inmobiliarios.",
     icon: Languages,
-    points: ["Traducciones oficiales.", "Documentacion para compraventas y tramites legales.", "Soporte para clientes nacionales e internacionales."]
+    points: ["Traducciones oficiales.", "Documentación para compraventas y trámites legales.", "Soporte para clientes nacionales e internacionales."]
   }
 ];
 
@@ -44,9 +44,9 @@ export default function ServicesPage() {
     <section className="container py-10 md:py-14">
       <div className="rounded-lg border border-black/10 bg-white p-6 shadow-soft md:p-8">
         <p className="section-kicker">Servicios</p>
-        <h1 className="mt-2 text-4xl font-black leading-tight md:text-6xl">Soluciones completas para tu operacion inmobiliaria</h1>
+        <h1 className="mt-2 text-4xl font-black leading-tight md:text-6xl">Soluciones completas para tu operación inmobiliaria</h1>
         <p className="mt-4 max-w-3xl text-lg leading-8 text-neutral-600">
-          En AKTUA HOME no nos limitamos a ensenar viviendas. Te acompanamos en la compraventa, la financiacion, la documentacion, los impuestos y los tramites legales que pueden aparecer antes, durante y despues de la firma.
+          En AKTUA HOME no nos limitamos a enseñar viviendas. Te acompañamos en la compraventa, la financiación, la documentación, los impuestos y los trámites legales que pueden aparecer antes, durante y después de la firma.
         </p>
       </div>
 

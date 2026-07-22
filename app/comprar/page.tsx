@@ -19,7 +19,7 @@ export default async function ComprarPage({ searchParams }: { searchParams: Prom
         <p className="section-kicker">Portal inmobiliario</p>
         <h1 className="mt-2 text-4xl font-black leading-tight md:text-6xl">Comprar vivienda</h1>
         <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
-          Encuentra viviendas en venta y alquiler con el acompanamiento de AKTUA HOME durante todo el proceso.
+          Encuentra viviendas en venta y alquiler con el acompañamiento de AKTUA HOME durante todo el proceso.
         </p>
       </div>
       <PropertySearch filters={filters} />
@@ -30,7 +30,7 @@ export default async function ComprarPage({ searchParams }: { searchParams: Prom
       </div>
       {!properties.length ? (
         <div className="mt-8 rounded-lg border border-black/10 bg-white p-8 text-center text-neutral-500">
-          No encontramos viviendas con esos filtros. Contacta con nosotros y te ayudamos a buscar la opcion adecuada.
+          No encontramos viviendas con esos filtros. Contacta con nosotros y te ayudamos a buscar la opción adecuada.
         </div>
       ) : null}
     </section>

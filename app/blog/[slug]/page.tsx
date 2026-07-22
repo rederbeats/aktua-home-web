@@ -38,7 +38,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <div className="prose mt-8 max-w-none">
         <p>
           Contenido inicial del articulo. En la fase del blog se conectara a Supabase con categorias, etiquetas,
-          estados de publicacion, imagen social, metadatos dinamicos y articulos relacionados.
+          estados de públicacion, imagen social, metadatos dinámicos y artículos relacionados.
         </p>
       </div>
     </article>

@@ -4,13 +4,13 @@ export default function LegalNoticePage() {
       <h1 className="text-4xl font-black">Aviso legal</h1>
       <div className="mt-5 space-y-5 leading-8 text-neutral-600">
         <p>
-          AKTUA HOME ofrece servicios de intermediacion inmobiliaria, asesoramiento en compraventa, financiacion, gestion documental, servicios juridicos y traducciones juradas relacionados con operaciones inmobiliarias.
+          AKTUA HOME ofrece servicios de intermediación inmobiliaria, asesoramiento en compraventa, financiación, gestión documental, servicios jurídicos y traducciones juradas relacionados con operaciones inmobiliarias.
         </p>
         <p>
-          La informacion publicada en esta web tiene caracter informativo. Las caracteristicas, precios y disponibilidad de los inmuebles pueden variar, por lo que se confirmaran siempre antes de formalizar cualquier operacion.
+          La información públicada en esta web tiene carácter informativo. Las carácteristicas, precios y disponibilidad de los inmuebles pueden variar, por lo que se confirmarán siempre antes de formalizar cualquier operación.
         </p>
         <p>
-          El contenido, imagenes, textos y elementos visuales de la web pertenecen a AKTUA HOME o se utilizan con autorizacion. No esta permitida su reproduccion o uso comercial sin consentimiento previo.
+          El contenido, imágenes, textos y elementos visuales de la web pertenecen a AKTUA HOME o se utilizan con autorización. No está permitida su reproducción o uso comercial sin consentimiento previo.
         </p>
       </div>
     </section>

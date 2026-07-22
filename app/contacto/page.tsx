@@ -15,7 +15,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
         <p className="text-sm font-bold uppercase text-brand-red">Contacto</p>
         <h1 className="mt-2 text-4xl font-black">Hablemos de tu vivienda</h1>
         <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-600">
-          Formulario preparado con consentimiento, antispam por honeypot y futura persistencia en Supabase.
+          Cuéntanos qué necesitas y te responderemos con una primera orientación personalizada.
         </p>
       </div>
       <aside className="rounded-lg border border-black/10 bg-white p-5 shadow-soft">

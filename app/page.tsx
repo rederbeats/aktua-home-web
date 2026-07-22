@@ -9,36 +9,36 @@ import { getPublishedProperties } from "@/lib/properties/public-properties";
 const services = [
   {
     title: "Compraventa de inmuebles",
-    body: "Asesoramiento en compra y venta, gestion integral de la operacion y acompanamiento hasta la firma.",
+    body: "Asesoramiento en compra y venta, gestión integral de la operación y acompañamiento hasta la firma.",
     icon: Home
   },
   {
-    title: "Financiacion hasta el 95%",
-    body: "Estudio hipotecario, gestion de financiacion y asesoramiento personalizado para compradores.",
+    title: "Financiación hasta el 95%",
+    body: "Estudio hipotecario, gestión de financiación y asesoramiento personalizado para compradores.",
     icon: Landmark
   },
   {
-    title: "Documentacion y fiscalidad",
-    body: "Escrituras, pagos, plusvalia, ITP, obra nueva y divisiones horizontales.",
+    title: "Documentación y fiscalidad",
+    body: "Escrituras, pagos, plusvalía, ITP, obra nueva y divisiones horizontales.",
     icon: FileText
   },
   {
-    title: "Servicios juridicos",
+    title: "Servicios jurídicos",
     body: "Herencias, testamentos, donaciones, procedimientos familiares y asesoramiento legal.",
     icon: Scale
   },
   {
     title: "Traducciones juradas",
-    body: "Traducciones oficiales para tramites legales, fiscales e inmobiliarios.",
+    body: "Traducciones oficiales para trámites legales, fiscales e inmobiliarios.",
     icon: Languages
   }
 ];
 
 const steps = [
-  "Analizamos tu objetivo y la situacion del inmueble.",
-  "Revisamos financiacion, documentacion e impuestos.",
-  "Gestionamos la operacion y coordinamos los tramites necesarios.",
-  "Te acompanamos hasta la firma y el cierre."
+  "Analizamos tu objetivo y la situación del inmueble.",
+  "Revisamos financiación, documentación e impuestos.",
+  "Gestionamos la operación y coordinamos los trámites necesarios.",
+  "Te acompañamos hasta la firma y el cierre."
 ];
 
 export default async function HomePage({ searchParams }: { searchParams: Promise<{ lead?: string }> }) {
@@ -70,7 +70,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
               Compra, vende y firma con todo bajo control.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-white/85 md:text-lg md:leading-8">
-              Te acompanamos en compraventa, financiacion hipotecaria, gestion documental, fiscalidad, servicios juridicos y traducciones juradas.
+              Te acompañamos en compraventa, financiación hipotecaria, gestión documental, fiscalidad, servicios jurídicos y traducciones juradas.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/comprar" className="inline-flex h-12 items-center gap-2 rounded-md bg-brand-red px-5 font-black text-white shadow-[0_18px_45px_rgba(200,16,34,0.35)] transition hover:-translate-y-0.5 hover:bg-red-700">
@@ -81,9 +81,9 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
               </Link>
             </div>
             <div className="mt-8 grid max-w-2xl grid-cols-3 gap-2 text-center md:gap-3 md:text-left">
-              <HeroStat value="Integral" label="Gestion completa" />
-              <HeroStat value="95%" label="Financiacion" />
-              <HeroStat value="Legal" label="Fiscal y juridico" />
+              <HeroStat value="Integral" label="Gestión completa" />
+              <HeroStat value="95%" label="Financiación" />
+              <HeroStat value="Legal" label="Fiscal y jurídico" />
             </div>
           </div>
 
@@ -93,8 +93,8 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                 <MessageCircle size={22} />
               </div>
               <div>
-                <h2 className="text-xl font-black">Hablemos de tu operacion</h2>
-                <p className="text-sm text-neutral-600">Te respondemos con una primera orientacion.</p>
+                <h2 className="text-xl font-black">Hablemos de tu operación</h2>
+                <p className="text-sm text-neutral-600">Te respondemos con una primera orientación.</p>
               </div>
             </div>
             <div className="mt-4">
@@ -107,9 +107,9 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
       <section className="relative z-10 -mt-4 pb-6 md:-mt-8">
         <div className="container grid gap-3 rounded-lg border border-black/10 bg-white p-3 shadow-[0_22px_70px_rgba(17,17,17,0.12)] md:grid-cols-4">
           <TrustItem icon={<MapPin size={20} />} title="Compraventa" body="Compra, venta y seguimiento." />
-          <TrustItem icon={<Home size={20} />} title="Financiacion" body="Hipotecas de hasta el 95%." />
-          <TrustItem icon={<KeyRound size={20} />} title="Documentacion" body="Escrituras, pagos e impuestos." />
-          <TrustItem icon={<Calculator size={20} />} title="Juridico" body="Herencias, donaciones y tramites." />
+          <TrustItem icon={<Home size={20} />} title="Financiación" body="Hipotecas de hasta el 95%." />
+          <TrustItem icon={<KeyRound size={20} />} title="Documentación" body="Escrituras, pagos e impuestos." />
+          <TrustItem icon={<Calculator size={20} />} title="Jurídico" body="Herencias, donaciones y trámites." />
         </div>
       </section>
 
@@ -125,9 +125,9 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         <div className="container grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
             <p className="section-kicker">Servicios</p>
-            <h2 className="mt-2 text-3xl font-black leading-tight md:text-5xl">Servicios inmobiliarios, financieros y juridicos en un solo lugar.</h2>
+            <h2 className="mt-2 text-3xl font-black leading-tight md:text-5xl">Servicios inmobiliarios, financieros y jurídicos en un solo lugar.</h2>
             <p className="mt-4 leading-8 text-neutral-600">
-              No se trata solo de vender o comprar una vivienda. Se trata de tener controlados la financiacion, los documentos, los impuestos y los tramites legales.
+              No se trata solo de vender o comprar una vivienda. Se trata de tener controlados la financiación, los documentos, los impuestos y los trámites legales.
             </p>
             <Link href="/servicios" className="mt-6 inline-flex h-11 items-center gap-2 rounded-md bg-brand-dark px-4 font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-brand-red">
               Ver servicios <ArrowRight size={17} />
@@ -169,7 +169,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
           </div>
         ) : (
           <div className="rounded-lg border border-black/10 bg-white p-8 text-center text-neutral-500 shadow-soft">
-            Estamos preparando una seleccion de viviendas destacadas. Contacta con nosotros y te ayudamos a encontrar la opcion adecuada.
+            Estamos preparando una selección de viviendas destacadas. Contacta con nosotros y te ayudamos a encontrar la opción adecuada.
           </div>
         )}
       </section>

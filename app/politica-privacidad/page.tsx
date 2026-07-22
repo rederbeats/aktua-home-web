@@ -53,10 +53,10 @@ export default function PrivacyPage() {
           <LegalList
             items={[
               "Atender consultas y solicitudes de información.",
-              "Gestionar la compra, venta o alquiler de inmuebles.",
+              "Gestiónar la compra, venta o alquiler de inmuebles.",
               "Organizar visitas a viviendas.",
-              "Realizar valoraciones inmobiliarias.",
-              "Gestionar encargos de intermediación inmobiliaria.",
+              "Realizar valoraciónes inmobiliarias.",
+              "Gestiónar encargos de intermediación inmobiliaria.",
               "Tramitar solicitudes de financiación e intermediación hipotecaria cuando el cliente lo solicite.",
               "Elaborar presupuestos y propuestas comerciales.",
               "Cumplir obligaciónes legales, fiscales, administrativas y contables.",
@@ -148,7 +148,7 @@ export default function PrivacyPage() {
 
         <LegalSection title="13. Modificaciones de esta política">
           <p>AKTUA HOME podrá modificar la presente Política de Privacidad cuando resulte necesario para adaptarla a cambios legislativos, jurisprudenciales o en la prestación de sus servicios.</p>
-          <p>La versión publicada en la página web sera siempre la vigente.</p>
+          <p>La versión públicada en la página web será siempre la vigente.</p>
         </LegalSection>
       </div>
     </section>

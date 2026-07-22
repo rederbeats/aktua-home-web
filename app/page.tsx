@@ -169,7 +169,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
           </div>
         ) : (
           <div className="rounded-lg border border-black/10 bg-white p-8 text-center text-neutral-500 shadow-soft">
-            Cuando actives inmuebles en el panel, apareceran aqui automaticamente.
+            Estamos preparando una seleccion de viviendas destacadas. Contacta con nosotros y te ayudamos a encontrar la opcion adecuada.
           </div>
         )}
       </section>

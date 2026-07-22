@@ -1,9 +1,9 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowDown, ArrowUp, Star } from "lucide-react";
-import { movePropertyImageAction, setPropertyImageCoverAction } from "@/app/admin/actions";
+import { ArrowDown, ArrowUp, Star, Trash2 } from "lucide-react";
+import { deletePropertyImageAction, movePropertyImageAction, setPropertyImageCoverAction } from "@/app/admin/actions";
 import { PropertyImageUploadForm } from "@/components/admin/property-image-upload-form";
 import { createAdminClient } from "@/lib/supabase/admin";
 
@@ -74,6 +74,13 @@ export default async function PropertyImagesPage({
                   </button>
                 </form>
               ) : null}
+              <form action={deletePropertyImageAction}>
+                <input type="hidden" name="property_id" value={property.id} />
+                <input type="hidden" name="image_id" value={image.id} />
+                <button type="submit" className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-md border border-red-200 bg-red-50 px-3 font-bold text-red-700 hover:bg-red-100">
+                  <Trash2 size={16} /> Eliminar foto
+                </button>
+              </form>
             </div>
           </article>
         ))}
@@ -109,6 +116,7 @@ function successMessage(success: string) {
     created: "Fotos subidas correctamente.",
     uploaded: "Fotos subidas correctamente.",
     ordered: "Orden de fotos actualizado.",
-    cover: "Foto de portada actualizada."
+    cover: "Foto de portada actualizada.",
+    deleted: "Foto eliminada correctamente."
   }[success] ?? "Cambios guardados correctamente.";
 }

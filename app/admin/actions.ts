@@ -452,6 +452,72 @@ export async function setPropertyImageCoverAction(formData: FormData) {
   redirect(`/admin/properties/${propertyId}/images?success=cover`);
 }
 
+export async function deletePropertyImageAction(formData: FormData) {
+  const propertyId = String(formData.get("property_id") ?? "");
+  const imageId = String(formData.get("image_id") ?? "");
+
+  if (!z.string().uuid().safeParse(propertyId).success || !z.string().uuid().safeParse(imageId).success) {
+    redirect("/admin/properties?error=invalid-image");
+  }
+
+  const supabase = await createClient();
+  const {
+    data: { user }
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/login");
+  }
+
+  const admin = createAdminClient();
+  const { data: image, error: imageError } = await admin
+    .from("property_images")
+    .select("id, storage_path, is_cover")
+    .eq("property_id", propertyId)
+    .eq("id", imageId)
+    .single();
+
+  if (imageError || !image) {
+    redirect(`/admin/properties/${propertyId}/images?error=${encodeURIComponent(imageError?.message || "Foto no encontrada.")}`);
+  }
+
+  const { error: storageError } = await admin.storage.from("property-images").remove([image.storage_path]);
+
+  if (storageError) {
+    redirect(`/admin/properties/${propertyId}/images?error=${encodeURIComponent(storageError.message)}`);
+  }
+
+  const { error: deleteError } = await admin.from("property_images").delete().eq("id", imageId).eq("property_id", propertyId);
+
+  if (deleteError) {
+    redirect(`/admin/properties/${propertyId}/images?error=${encodeURIComponent(deleteError.message)}`);
+  }
+
+  await normalizePropertyImageOrder(admin, propertyId);
+
+  if (image.is_cover) {
+    const { data: nextCover } = await admin
+      .from("property_images")
+      .select("id")
+      .eq("property_id", propertyId)
+      .order("sort_order", { ascending: true })
+      .limit(1);
+
+    if (nextCover?.[0]?.id) {
+      const coverError = await setCoverImage(admin, propertyId, nextCover[0].id);
+
+      if (coverError) {
+        redirect(`/admin/properties/${propertyId}/images?error=${encodeURIComponent(coverError)}`);
+      }
+    }
+  }
+
+  revalidatePath(`/admin/properties/${propertyId}/images`);
+  revalidatePath("/admin/properties");
+  revalidatePath("/comprar");
+  redirect(`/admin/properties/${propertyId}/images?success=deleted`);
+}
+
 function getImageFiles(formData: FormData) {
   return formData.getAll("images").filter((item): item is File => item instanceof File && item.size > 0);
 }
@@ -506,6 +572,18 @@ async function getNextImageSortOrder(admin: ReturnType<typeof createAdminClient>
     .limit(1);
 
   return Number(data?.[0]?.sort_order ?? -1) + 1;
+}
+
+async function normalizePropertyImageOrder(admin: ReturnType<typeof createAdminClient>, propertyId: string) {
+  const { data: images } = await admin
+    .from("property_images")
+    .select("id")
+    .eq("property_id", propertyId)
+    .order("sort_order", { ascending: true });
+
+  await Promise.all(
+    (images ?? []).map((image, index) => admin.from("property_images").update({ sort_order: index }).eq("id", image.id))
+  );
 }
 
 async function setCoverImage(admin: ReturnType<typeof createAdminClient>, propertyId: string, imageId: string) {

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { MapPin, Share2, MessageCircle } from "lucide-react";
 import { LeadForm } from "@/components/forms/lead-form";
+import { PropertyGallery } from "@/components/properties/property-gallery";
 import { PropertyCard } from "@/components/properties/property-card";
 import { getPublishedProperties, getPublishedPropertyBySlug } from "@/lib/properties/public-properties";
 
@@ -32,22 +32,7 @@ export default async function PropertyDetailPage({
   return (
     <section className="container grid gap-8 py-8 md:py-12 lg:grid-cols-[1fr_380px]">
       <article>
-        <div className="relative aspect-[16/10] overflow-hidden rounded-lg border border-black/10 bg-neutral-100 shadow-[0_24px_70px_rgba(17,17,17,0.13)] md:aspect-[16/8]">
-          <Image src={property.imageUrl} alt={property.title} fill className="object-cover" priority />
-          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/55 to-transparent" />
-          <span className="absolute bottom-4 left-4 rounded-full bg-white px-3 py-1 text-xs font-black text-brand-dark shadow-lg">
-            {property.operation === "sale" ? "Venta" : "Alquiler"}
-          </span>
-        </div>
-        {property.images.length > 1 ? (
-          <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
-            {property.images.slice(1, 5).map((image) => (
-              <div key={image.id} className="relative aspect-[4/3] overflow-hidden rounded-lg border border-black/10 bg-neutral-100 shadow-sm">
-                <Image src={image.url} alt={image.alt} fill className="object-cover" />
-              </div>
-            ))}
-          </div>
-        ) : null}
+        <PropertyGallery images={property.images} title={property.title} />
         <div className="mt-7 rounded-lg border border-black/10 bg-white p-6 shadow-soft md:p-8">
           <p className="section-kicker">{property.operation === "sale" ? "Venta" : "Alquiler"}</p>
           <h1 className="mt-2 text-3xl font-black leading-tight md:text-5xl">{property.title}</h1>

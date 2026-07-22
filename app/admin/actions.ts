@@ -130,6 +130,60 @@ export async function createPropertyAction(formData: FormData) {
   redirect(property?.id ? `/admin/properties/${property.id}/images?success=created` : "/admin/properties");
 }
 
+export async function createPropertyInlineAction(
+  formData: FormData
+): Promise<{ ok: true; propertyId: string } | { ok: false; error: string }> {
+  const parsed = propertyFormSchema.safeParse(Object.fromEntries(formData));
+
+  if (!parsed.success) {
+    return { ok: false, error: "Revisa los campos obligatorios del inmueble." };
+  }
+
+  const values = parsed.data;
+  const supabase = await createClient();
+  const slug = slugify(`${values.title}-${values.internal_reference}`);
+  const now = new Date().toISOString();
+
+  const { data: property, error } = await supabase
+    .from("properties")
+    .insert({
+      internal_reference: values.internal_reference,
+      slug,
+      title: values.title,
+      description: emptyToNull(values.description),
+      property_type: values.property_type,
+      operation: values.operation,
+      price: values.price || null,
+      public_address: emptyToNull(values.public_address),
+      province: emptyToNull(values.province),
+      municipality: emptyToNull(values.municipality),
+      neighborhood: emptyToNull(values.neighborhood),
+      built_area: values.built_area || null,
+      bedrooms: values.bedrooms || null,
+      bathrooms: values.bathrooms || null,
+      has_elevator: values.has_elevator,
+      has_terrace: values.has_terrace,
+      has_garage: values.has_garage,
+      has_storage_room: values.has_storage_room,
+      has_pool: values.has_pool,
+      status: values.status,
+      is_featured: values.is_featured,
+      published_at: values.publish ? now : null,
+      tags: splitTags(values.tags)
+    })
+    .select("id")
+    .single();
+
+  if (error || !property?.id) {
+    return { ok: false, error: error?.message || "No se pudo crear el inmueble." };
+  }
+
+  revalidatePath("/admin/properties");
+  revalidatePath("/comprar");
+
+  return { ok: true, propertyId: property.id };
+}
+
 export async function updatePropertyAction(formData: FormData) {
   const propertyId = String(formData.get("property_id") ?? "");
   const parsed = propertyFormSchema.safeParse(Object.fromEntries(formData));

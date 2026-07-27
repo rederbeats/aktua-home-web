@@ -264,6 +264,71 @@ export async function togglePropertyPublicationAction(formData: FormData) {
   redirect("/admin/properties");
 }
 
+export async function movePropertyOrderAction(formData: FormData) {
+  const propertyId = String(formData.get("property_id") ?? "");
+  const direction = String(formData.get("direction") ?? "");
+
+  if (!z.string().uuid().safeParse(propertyId).success || !["up", "down"].includes(direction)) {
+    redirect("/admin/properties?error=invalid-property-order");
+  }
+
+  const supabase = await createClient();
+  const {
+    data: { user }
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/login");
+  }
+
+  const admin = createAdminClient();
+  const { data: properties, error } = await admin
+    .from("properties")
+    .select("id, published_at")
+    .in("status", ["available", "reserved"])
+    .not("published_at", "is", null)
+    .order("published_at", { ascending: false })
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    redirect(`/admin/properties?error=${encodeURIComponent(error.message)}`);
+  }
+
+  const ordered = properties ?? [];
+  const currentIndex = ordered.findIndex((property) => property.id === propertyId);
+  const targetIndex = direction === "up" ? currentIndex - 1 : currentIndex + 1;
+
+  if (currentIndex < 0) {
+    redirect(`/admin/properties?error=${encodeURIComponent("Solo puedes ordenar inmuebles publicados y disponibles.")}`);
+  }
+
+  if (targetIndex < 0 || targetIndex >= ordered.length) {
+    redirect("/admin/properties");
+  }
+
+  const [current] = ordered.splice(currentIndex, 1);
+  ordered.splice(targetIndex, 0, current);
+
+  const now = Date.now();
+  const updates = await Promise.all(
+    ordered.map((property, index) =>
+      admin
+        .from("properties")
+        .update({ published_at: new Date(now - index * 1000).toISOString(), updated_at: new Date().toISOString() })
+        .eq("id", property.id)
+    )
+  );
+  const updateError = updates.find((result) => result.error)?.error;
+
+  if (updateError) {
+    redirect(`/admin/properties?error=${encodeURIComponent(updateError.message)}`);
+  }
+
+  revalidatePath("/");
+  revalidatePath("/comprar");
+  revalidatePath("/admin/properties");
+  redirect("/admin/properties");
+}
 export async function deletePropertyAction(formData: FormData) {
   const propertyId = String(formData.get("property_id") ?? "");
 

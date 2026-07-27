@@ -101,7 +101,6 @@ export async function getPublishedProperties(filters: PropertyFilters = {}): Pro
     if (column) query = query.eq(column, true);
   }
 
-  query = query.order("is_featured", { ascending: false });
   if (filters.sort === "price_asc") query = query.order("price", { ascending: true, nullsFirst: false });
   else if (filters.sort === "price_desc") query = query.order("price", { ascending: false, nullsFirst: false });
   else query = query.order("published_at", { ascending: false });
@@ -211,4 +210,3 @@ function publicImageUrl(path: string) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   return url ? `${url}/storage/v1/object/public/property-images/${path}` : fallbackImage;
 }
-

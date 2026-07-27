@@ -40,9 +40,6 @@ export function Header() {
               {label}
             </Link>
           ))}
-          <Link href="/admin" className="rounded-full bg-brand-dark px-4 py-2 text-white shadow-sm transition hover:bg-brand-red">
-            Admin
-          </Link>
         </nav>
 
         <button
@@ -69,9 +66,6 @@ export function Header() {
               {label}
             </Link>
           ))}
-          <Link href="/admin" className="mt-4 block rounded-md bg-brand-dark px-4 py-3 text-center text-white shadow-soft" onClick={closeMenu}>
-            Admin
-          </Link>
         </nav>
       ) : null}
     </header>

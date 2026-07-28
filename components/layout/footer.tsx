@@ -12,13 +12,22 @@ export function Footer() {
           </div>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-white/70">{siteConfig.shortDescription}</p>
           <p className="mt-5 text-xs font-semibold text-white/45">
-            Web y tecnología desarrolladas por Valencia Labs.
+            Web y tecnolog&iacute;a desarrolladas por{" "}
+            <a
+              href="https://valencialabs.pages.dev/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-white/70 underline decoration-white/25 underline-offset-4 transition hover:text-white"
+            >
+              Valencia Labs
+            </a>
+            .
           </p>
         </div>
         <nav className="grid gap-3 text-sm font-semibold text-white/75">
           <Link href="/sobre-aktua-home" className="transition hover:text-white">Sobre {siteConfig.brandName}</Link>
-          <Link href="/politica-privacidad" className="transition hover:text-white">Política de privacidad</Link>
-          <Link href="/politica-cookies" className="transition hover:text-white">Política de cookies</Link>
+          <Link href="/politica-privacidad" className="transition hover:text-white">Pol&iacute;tica de privacidad</Link>
+          <Link href="/politica-cookies" className="transition hover:text-white">Pol&iacute;tica de cookies</Link>
           <Link href="/aviso-legal" className="transition hover:text-white">Aviso legal</Link>
         </nav>
       </div>

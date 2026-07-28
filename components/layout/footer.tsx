@@ -11,6 +11,9 @@ export function Footer() {
             <Image src={siteConfig.assets.logoFooter} alt={siteConfig.brandName} width={126} height={49} />
           </div>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-white/70">{siteConfig.shortDescription}</p>
+          <p className="mt-5 text-xs font-semibold text-white/45">
+            Web y tecnología desarrolladas por Valencia Labs.
+          </p>
         </div>
         <nav className="grid gap-3 text-sm font-semibold text-white/75">
           <Link href="/sobre-aktua-home" className="transition hover:text-white">Sobre {siteConfig.brandName}</Link>

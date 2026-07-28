@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { BadgeCheck, FileText, Home, Landmark, Languages, Scale } from "lucide-react";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Servicios",
-  description: "Compraventa, financiación hipotecaria, gestión documental, servicios jurídicos y traducciones juradas de AKTUA HOME."
+  description: "Compraventa, financiación hipotecaria, gestión documental, servicios jurídicos y traducciones juradas de " + siteConfig.brandName + "."
 };
 
 const services = [
@@ -46,7 +47,7 @@ export default function ServicesPage() {
         <p className="section-kicker">Servicios</p>
         <h1 className="mt-2 text-4xl font-black leading-tight md:text-6xl">Soluciones completas para tu operación inmobiliaria</h1>
         <p className="mt-4 max-w-3xl text-lg leading-8 text-neutral-600">
-          En AKTUA HOME no nos limitamos a enseñar viviendas. Te acompañamos en la compraventa, la financiación, la documentación, los impuestos y los trámites legales que pueden aparecer antes, durante y después de la firma.
+          En {siteConfig.brandName} no nos limitamos a enseñar viviendas. Te acompañamos en la compraventa, la financiación, la documentación, los impuestos y los trámites legales que pueden aparecer antes, durante y después de la firma.
         </p>
       </div>
 

@@ -5,6 +5,7 @@ import { LeadForm } from "@/components/forms/lead-form";
 import { PropertyGallery } from "@/components/properties/property-gallery";
 import { PropertyCard } from "@/components/properties/property-card";
 import { getPublishedProperties, getPublishedPropertyBySlug } from "@/lib/properties/public-properties";
+import { siteConfig } from "@/lib/site-config";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -44,7 +45,7 @@ export default async function PropertyDetailPage({
           <strong className="mt-5 block text-3xl font-black md:text-4xl">
             {property.price ? new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(property.price) : "Consultar precio"}
           </strong>
-          <p className="mt-6 max-w-3xl leading-8 text-neutral-700">{property.description || "Contacta con AKTUA HOME para ampliar información sobre este inmueble."}</p>
+          <p className="mt-6 max-w-3xl leading-8 text-neutral-700">{property.description || "Contacta con " + siteConfig.brandName + " para ampliar información sobre este inmueble."}</p>
           <dl className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             <Fact label="Tipo" value={property.propertyType} />
             <Fact label="Habitaciones" value={property.bedrooms ? `${property.bedrooms}` : "-"} />

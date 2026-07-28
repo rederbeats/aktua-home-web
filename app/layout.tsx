@@ -2,17 +2,18 @@ import type { Metadata } from "next";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { GlobalLoadingIndicator } from "@/components/ui/global-loading-indicator";
+import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
+  metadataBase: new URL(siteConfig.publicSiteUrl),
   title: {
-    default: "AKTUA HOME | Inmobiliaria",
-    template: "%s | AKTUA HOME"
+    default: siteConfig.brandName + " | " + siteConfig.tagline,
+    template: "%s | " + siteConfig.brandName
   },
-  description: "Portal inmobiliario y blog de AKTUA HOME.",
+  description: siteConfig.seoDescription,
   openGraph: {
-    title: "AKTUA HOME",
+    title: siteConfig.brandName,
     description: "Inmuebles, asesoramiento y servicios inmobiliarios.",
     type: "website",
     locale: "es_ES"

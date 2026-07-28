@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { samplePosts } from "@/lib/domain/blog";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Blog inmobiliario",
-  description: "Guias y consejos inmobiliarios de AKTUA HOME."
+  description: "Guías y consejos inmobiliarios de " + siteConfig.brandName + "."
 };
 
 export default function BlogPage() {
@@ -12,7 +13,7 @@ export default function BlogPage() {
     <section className="container py-10">
       <div className="mb-7">
         <p className="text-sm font-bold uppercase text-brand-red">Blog inmobiliario</p>
-        <h1 className="mt-2 text-4xl font-black">Guias para comprar, vender y financiar</h1>
+        <h1 className="mt-2 text-4xl font-black">Guías para comprar, vender y financiar</h1>
       </div>
       <div className="grid gap-5 md:grid-cols-2">
         {samplePosts.map((post) => (

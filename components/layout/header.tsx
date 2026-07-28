@@ -4,16 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-
-const navItems = [
-  ["Inicio", "/"],
-  ["Comprar", "/comprar"],
-  ["Vender", "/vender-mi-vivienda"],
-  ["Hipotecas", "/hipotecas"],
-  ["Servicios", "/servicios"],
-  ["Blog", "/blog"],
-  ["Contacto", "/contacto"]
-];
+import { siteConfig } from "@/lib/site-config";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,8 +16,8 @@ export function Header() {
       <div className="container flex min-h-16 items-center justify-between gap-4 py-2">
         <Link href="/" className="flex items-center gap-3" onClick={closeMenu}>
           <Image
-            src="/assets/aktua-home-logo-header-transparent.png"
-            alt="AKTUA HOME"
+            src={siteConfig.assets.logoHeader}
+            alt={siteConfig.brandName}
             width={190}
             height={79}
             className="h-12 w-auto md:h-14"
@@ -35,9 +26,9 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-1 rounded-full border border-black/10 bg-neutral-50 p-1 text-sm font-bold text-neutral-700 md:flex">
-          {navItems.map(([label, href]) => (
-            <Link key={href} href={href} className="rounded-full px-3 py-2 transition hover:bg-white hover:text-brand-red hover:shadow-sm">
-              {label}
+          {siteConfig.navItems.map((item) => (
+            <Link key={item.href} href={item.href} className="rounded-full px-3 py-2 transition hover:bg-white hover:text-brand-red hover:shadow-sm">
+              {item.label}
             </Link>
           ))}
         </nav>
@@ -46,7 +37,7 @@ export function Header() {
           type="button"
           data-no-loading
           className="flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white text-brand-dark shadow-sm transition hover:border-brand-red hover:text-brand-red md:hidden"
-          aria-label={isMenuOpen ? "Cerrar menu" : "Abrir menu"}
+          aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={isMenuOpen}
           onClick={() => setIsMenuOpen((current) => !current)}
         >
@@ -56,14 +47,14 @@ export function Header() {
 
       {isMenuOpen ? (
         <nav className="border-t border-black/10 bg-white px-4 pb-5 pt-2 text-base font-bold text-neutral-800 shadow-xl md:hidden">
-          {navItems.map(([label, href]) => (
+          {siteConfig.navItems.map((item) => (
             <Link
-              key={href}
-              href={href}
+              key={item.href}
+              href={item.href}
               className="block border-b border-black/5 px-2 py-4 transition hover:pl-4 hover:text-brand-red"
               onClick={closeMenu}
             >
-              {label}
+              {item.label}
             </Link>
           ))}
         </nav>

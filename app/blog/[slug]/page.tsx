@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { samplePosts } from "@/lib/domain/blog";
+import { siteConfig } from "@/lib/site-config";
 
 export function generateStaticParams() {
   return samplePosts.map((post) => ({ slug: post.slug }));
@@ -10,8 +11,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = samplePosts.find((item) => item.slug === slug);
   return {
-    title: post?.title ?? "Articulo",
-    description: post?.excerpt ?? "Articulo inmobiliario de AKTUA HOME."
+    title: post?.title ?? "Artículo",
+    description: post?.excerpt ?? "Artículo inmobiliario de " + siteConfig.brandName + "."
   };
 }
 
@@ -26,7 +27,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     headline: post.title,
     description: post.excerpt,
     datePublished: post.publishedAt,
-    author: { "@type": "Organization", name: "AKTUA HOME" }
+    author: { "@type": "Organization", name: siteConfig.brandName }
   };
 
   return (

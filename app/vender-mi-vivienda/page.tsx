@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { BadgeCheck } from "lucide-react";
 import { LeadForm } from "@/components/forms/lead-form";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Vender mi vivienda",
-  description: "Asesoramiento de venta, gestión documental y acompañamiento integral con AKTUA HOME."
+  description: "Asesoramiento de venta, gestión documental y acompañamiento integral con " + siteConfig.brandName + "."
 };
 
 const points = [

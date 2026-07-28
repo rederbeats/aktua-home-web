@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { BadgeCheck } from "lucide-react";
 import { LeadForm } from "@/components/forms/lead-form";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Financiación hipotecaria",
-  description: "Estudio y gestión de financiación hipotecaria de hasta el 95% con AKTUA HOME."
+  description: "Estudio y gestión de financiación hipotecaria de hasta el 95% con " + siteConfig.brandName + "."
 };
 
 const points = [

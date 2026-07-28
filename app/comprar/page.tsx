@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { PropertyCard } from "@/components/properties/property-card";
 import { PropertySearch } from "@/components/properties/property-search";
 import { getPublishedProperties, type PropertyFilters } from "@/lib/properties/public-properties";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Comprar vivienda",
-  description: "Viviendas en venta y alquiler con asesoramiento integral de AKTUA HOME."
+  description: "Viviendas en venta y alquiler con asesoramiento integral de " + siteConfig.brandName + "."
 };
 
 export default async function ComprarPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
@@ -19,7 +20,7 @@ export default async function ComprarPage({ searchParams }: { searchParams: Prom
         <p className="section-kicker">Portal inmobiliario</p>
         <h1 className="mt-2 text-4xl font-black leading-tight md:text-6xl">Comprar vivienda</h1>
         <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
-          Encuentra viviendas en venta y alquiler con el acompañamiento de AKTUA HOME durante todo el proceso.
+          Encuentra viviendas en venta y alquiler con el acompañamiento de {siteConfig.brandName} durante todo el proceso.
         </p>
       </div>
       <PropertySearch filters={filters} />

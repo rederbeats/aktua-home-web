@@ -5,6 +5,7 @@ import { LeadForm } from "@/components/forms/lead-form";
 import { PropertyCard } from "@/components/properties/property-card";
 import { PropertySearch } from "@/components/properties/property-search";
 import { getPublishedProperties } from "@/lib/properties/public-properties";
+import { siteConfig } from "@/lib/site-config";
 
 const services = [
   {
@@ -51,8 +52,8 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
       <section className="relative overflow-hidden bg-brand-dark text-white">
         <div className="absolute inset-0">
           <Image
-            src="/assets/home-hero-real-estate.png"
-            alt="Viviendas modernas representativas de AKTUA HOME"
+            src={siteConfig.assets.heroImage}
+            alt={`Viviendas modernas representativas de ${siteConfig.brandName}`}
             fill
             className="object-cover opacity-65"
             priority
@@ -64,7 +65,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         <div className="container relative grid min-h-[calc(100svh-80px)] content-center gap-8 py-10 md:py-16 lg:grid-cols-[1fr_420px] lg:items-end">
           <div className="max-w-3xl py-8 md:py-12">
             <p className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-black uppercase text-red-100 backdrop-blur">
-              AKTUA HOME inmobiliaria
+              {siteConfig.brandName} {siteConfig.tagline.toLowerCase()}
             </p>
             <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.02] sm:text-5xl md:text-7xl">
               Compra, vende y firma con todo bajo control.
@@ -177,7 +178,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
       <section className="bg-brand-dark py-14 text-white md:py-20">
         <div className="container grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
-            <p className="section-kicker text-red-300">Metodo AKTUA HOME</p>
+            <p className="section-kicker text-red-300">Método {siteConfig.brandName}</p>
             <h2 className="mt-2 text-3xl font-black leading-tight md:text-5xl">Orden, claridad y seguimiento hasta el final.</h2>
           </div>
           <div className="grid gap-3 md:grid-cols-2">

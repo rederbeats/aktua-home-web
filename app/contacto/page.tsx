@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { LeadForm } from "@/components/forms/lead-form";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Contacto",
-  description: "Contacta con AKTUA HOME."
+  description: "Contacta con " + siteConfig.brandName + "."
 };
 
 export default async function ContactPage({ searchParams }: { searchParams: Promise<{ lead?: string }> }) {

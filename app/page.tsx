@@ -73,11 +73,11 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
             <p className="mt-5 max-w-2xl text-base leading-7 text-white/85 md:text-lg md:leading-8">
               Te acompañamos en compraventa, financiación hipotecaria, gestión documental, fiscalidad, servicios jurídicos y traducciones juradas.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/comprar" className="inline-flex h-12 items-center gap-2 rounded-md bg-brand-red px-5 font-black text-white shadow-[0_18px_45px_rgba(200,16,34,0.35)] transition hover:-translate-y-0.5 hover:bg-red-700">
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
+              <Link href="/comprar" className="inline-flex h-12 min-w-0 items-center justify-center gap-2 rounded-md bg-brand-red px-3 text-center text-sm font-black text-white shadow-[0_18px_45px_rgba(200,16,34,0.35)] transition hover:-translate-y-0.5 hover:bg-red-700 sm:px-5 sm:text-base">
                 Ver viviendas <ArrowRight size={18} />
               </Link>
-              <Link href="/vender-mi-vivienda" className="inline-flex h-12 items-center rounded-md bg-white px-5 font-black text-brand-dark shadow-xl transition hover:-translate-y-0.5">
+              <Link href="/vender-mi-vivienda" className="inline-flex h-12 min-w-0 items-center justify-center rounded-md bg-white px-3 text-center text-sm font-black text-brand-dark shadow-xl transition hover:-translate-y-0.5 sm:px-5 sm:text-base">
                 Valorar mi vivienda
               </Link>
             </div>

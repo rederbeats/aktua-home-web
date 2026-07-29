@@ -82,9 +82,9 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
               </Link>
             </div>
             <div className="mt-8 grid max-w-2xl grid-cols-3 gap-2 text-center md:gap-3 md:text-left">
-              <HeroStat value="Integral" label="Gestión completa" />
-              <HeroStat value="95%" label="Financiación" />
-              <HeroStat value="Legal" label="Fiscal y jurídico" />
+              <HeroStat value="Sin complicaciones" label="Nos ocupamos de todo" />
+              <HeroStat value="Hasta 95%" label="Financiación" />
+              <HeroStat value="Valoración" label="Gratuita y sin compromiso" />
             </div>
           </div>
 

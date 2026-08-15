@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { BadgeCheck } from "lucide-react";
 import { LeadForm } from "@/components/forms/lead-form";
+import { MetaPixelEvent } from "@/components/analytics/meta-pixel-event";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -19,7 +20,11 @@ export default async function MortgagesPage({ searchParams }: { searchParams: Pr
   const { lead } = await searchParams;
 
   return (
-    <section className="container grid gap-8 py-10 md:py-14 lg:grid-cols-[1fr_380px]">
+    <>
+      {lead === "sent" ? (
+        <MetaPixelEvent eventName="CompleteRegistration" parameters={{ content_name: "Hipotecas", status: "lead_sent" }} />
+      ) : null}
+      <section className="container grid gap-8 py-10 md:py-14 lg:grid-cols-[1fr_380px]">
       <div className="rounded-lg border border-black/10 bg-white p-6 shadow-soft md:p-8">
         <p className="section-kicker">Financiación hipotecaria</p>
         <h1 className="mt-2 text-4xl font-black leading-tight md:text-6xl">Hipotecas de hasta el 95%</h1>
@@ -42,6 +47,7 @@ export default async function MortgagesPage({ searchParams }: { searchParams: Pr
           <LeadForm type="mortgage" sourcePath="/hipotecas" status={lead} />
         </div>
       </aside>
-    </section>
+      </section>
+    </>
   );
 }

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { BadgeCheck } from "lucide-react";
 import { LeadForm } from "@/components/forms/lead-form";
 import { MetaPixelEvent } from "@/components/analytics/meta-pixel-event";
+import { MortgageSimulator } from "@/components/mortgages/mortgage-simulator";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -40,7 +41,7 @@ export default async function MortgagesPage({ searchParams }: { searchParams: Pr
           ))}
         </ul>
       </div>
-      <aside className="h-fit rounded-lg border border-black/10 bg-white p-5 shadow-soft lg:sticky lg:top-28">
+      <aside id="consulta-hipoteca" className="h-fit scroll-mt-28 rounded-lg border border-black/10 bg-white p-5 shadow-soft lg:sticky lg:top-28">
         <h2 className="text-xl font-black">Consultar financiación</h2>
         <p className="mt-2 text-sm leading-6 text-neutral-600">Cuéntanos tu caso y te orientamos sobre los siguientes pasos.</p>
         <div className="mt-4">
@@ -48,6 +49,8 @@ export default async function MortgagesPage({ searchParams }: { searchParams: Pr
         </div>
       </aside>
       </section>
+      <MortgageSimulator />
     </>
   );
 }
+

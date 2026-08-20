@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { Building2, FileText, Home, Inbox, LayoutDashboard, LogOut } from "lucide-react";
+import { Building2, FileText, Home, Inbox, LayoutDashboard, LogOut, UploadCloud } from "lucide-react";
 import { signOutAction } from "@/app/admin/actions";
 
 const navItems = [
   { href: "/admin/dashboard", label: "Panel", icon: LayoutDashboard },
   { href: "/admin/properties", label: "Inmuebles", icon: Building2 },
+  { href: "/admin/importar-idealista", label: "Importar", icon: UploadCloud },
   { href: "/admin/blog", label: "Blog", icon: FileText },
   { href: "/admin/leads", label: "Leads", icon: Inbox }
 ];
@@ -42,3 +43,4 @@ export function AdminShell({ children, email }: { children: React.ReactNode; ema
     </div>
   );
 }
+

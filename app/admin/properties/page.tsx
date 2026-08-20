@@ -54,9 +54,14 @@ export default async function AdminPropertiesPage() {
           <p className="text-sm font-bold uppercase text-brand-red">Admin</p>
           <h1 className="mt-2 text-4xl font-black">Inmuebles</h1>
         </div>
-        <Link href="/admin/properties/new" className="inline-flex h-11 items-center rounded-md bg-brand-red px-4 font-bold text-white">
-          Nuevo inmueble
-        </Link>
+        <div className="flex flex-wrap gap-2">
+          <Link href="/admin/importar-idealista" className="inline-flex h-11 items-center rounded-md bg-neutral-100 px-4 font-bold text-neutral-700">
+            Importar idealista
+          </Link>
+          <Link href="/admin/properties/new" className="inline-flex h-11 items-center rounded-md bg-brand-red px-4 font-bold text-white">
+            Nuevo inmueble
+          </Link>
+        </div>
       </div>
 
       {error ? <ErrorBox message={error.message} /> : null}
@@ -229,3 +234,4 @@ function translateStatus(status: string) {
     sold: "Vendido"
   }[status] ?? status;
 }
+

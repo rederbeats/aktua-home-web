@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { parseIdealistaManualInput } from "@/lib/importers/idealista-manual-importer";
 import { createClient } from "@/lib/supabase/server";
 import { slugify } from "@/lib/utils/slugify";
 
@@ -637,6 +638,90 @@ export async function deletePropertyImageAction(formData: FormData) {
   redirect(`/admin/properties/${propertyId}/images?success=deleted`);
 }
 
+
+export async function importIdealistaManualAction(formData: FormData) {
+  const rawInput = String(formData.get("idealista_input") ?? "");
+  const parsed = parseIdealistaManualInput(rawInput);
+
+  if (parsed.errors.length) {
+    redirect(`/admin/importar-idealista?error=${encodeURIComponent(parsed.errors.join(" "))}`);
+  }
+
+  const supabase = await createClient();
+  const {
+    data: { user }
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/login");
+  }
+
+  const admin = createAdminClient();
+  let created = 0;
+  let updated = 0;
+  const errors: string[] = [];
+
+  for (const record of parsed.records) {
+    const internalReference = `IDL-${record.externalReference}`.slice(0, 80);
+    const payload = {
+      internal_reference: internalReference,
+      external_reference: record.externalReference,
+      source: "idealista",
+      slug: slugify(`${record.title}-${internalReference}`),
+      title: record.title,
+      description: emptyToNull(record.description),
+      property_type: record.propertyType,
+      operation: record.operation,
+      price: record.price ?? null,
+      public_address: emptyToNull(record.publicAddress),
+      province: "Málaga",
+      municipality: emptyToNull(record.municipality),
+      neighborhood: emptyToNull(record.neighborhood),
+      built_area: record.builtArea ?? null,
+      bedrooms: record.bedrooms ?? null,
+      bathrooms: record.bathrooms ?? null,
+      has_elevator: record.hasElevator,
+      has_terrace: record.hasTerrace,
+      has_garage: record.hasGarage,
+      has_storage_room: false,
+      has_pool: false,
+      status: "available" as const,
+      is_featured: false,
+      tags: record.tags,
+      updated_at: new Date().toISOString()
+    };
+
+    const { data: existing, error: findError } = await admin
+      .from("properties")
+      .select("id")
+      .eq("source", "idealista")
+      .eq("external_reference", record.externalReference)
+      .maybeSingle();
+
+    if (findError) {
+      errors.push(`${record.title}: ${findError.message}`);
+      continue;
+    }
+
+    if (existing?.id) {
+      const { error } = await admin.from("properties").update(payload).eq("id", existing.id);
+      if (error) errors.push(`${record.title}: ${error.message}`);
+      else updated += 1;
+      continue;
+    }
+
+    const { error } = await admin.from("properties").insert({ ...payload, published_at: null });
+    if (error) errors.push(`${record.title}: ${error.message}`);
+    else created += 1;
+  }
+
+  revalidatePath("/admin/properties");
+
+  const params = new URLSearchParams({ created: String(created), updated: String(updated) });
+  if (errors.length) params.set("error", errors.join(" | "));
+  redirect(`/admin/importar-idealista?${params.toString()}`);
+}
+
 function getImageFiles(formData: FormData) {
   return formData.getAll("images").filter((item): item is File => item instanceof File && item.size > 0);
 }
@@ -730,3 +815,4 @@ function splitTags(value?: string) {
       .filter(Boolean) ?? []
   );
 }
+

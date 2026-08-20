@@ -39,6 +39,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '3317425701790757');
+            fbq('init', '3271653106369747');
             fbq('track', 'PageView');
           `}
         </Script>
@@ -50,6 +51,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             src="https://www.facebook.com/tr?id=3317425701790757&ev=PageView&noscript=1"
             alt=""
           />
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=3271653106369747&ev=PageView&noscript=1"
+            alt=""
+          />
         </noscript>
         <GlobalLoadingIndicator />
         <Header />
@@ -59,3 +67,4 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     </html>
   );
 }
+

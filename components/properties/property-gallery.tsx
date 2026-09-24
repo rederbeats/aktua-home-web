@@ -12,7 +12,7 @@ export type PropertyGalleryImage = {
 
 export function PropertyGallery({ images, title }: { images: PropertyGalleryImage[]; title: string }) {
   const galleryImages = useMemo(
-    () => (images.length ? images : [{ id: "fallback", url: "/assets/aktua-home-logo.png", alt: title }]),
+    () => (images.length ? images : [{ id: "fallback", url: "/assets/aktua-home-logo-2026.png", alt: title }]),
     [images, title]
   );
   const [currentIndex, setCurrentIndex] = useState(0);

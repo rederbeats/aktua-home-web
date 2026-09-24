@@ -111,7 +111,7 @@ export default async function NewBuildPage({ searchParams }: { searchParams: Pro
                 <MessageCircle size={19} /> Hablar por WhatsApp
               </a>
             </div>
-            <a href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`} className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-white/80 transition hover:text-white">
+            <a href={siteConfig.contact.phoneHref} className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-white/80 transition hover:text-white">
               <Phone size={17} /> También puedes llamarnos al {siteConfig.contact.phone}
             </a>
           </div>
@@ -189,7 +189,7 @@ export default async function NewBuildPage({ searchParams }: { searchParams: Pro
             </ul>
             <div className="mt-7 rounded-lg border border-brand-red/15 bg-white p-4">
               <p className="text-xs font-black uppercase text-neutral-500">Contacto directo</p>
-              <a href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`} className="mt-2 flex items-center gap-2 text-lg font-black text-brand-dark hover:text-brand-red">
+              <a href={siteConfig.contact.phoneHref} className="mt-2 flex items-center gap-2 text-lg font-black text-brand-dark hover:text-brand-red">
                 <Phone size={19} className="text-brand-red" /> {siteConfig.contact.phone}
               </a>
               <a

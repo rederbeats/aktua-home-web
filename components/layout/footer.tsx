@@ -14,7 +14,7 @@ export function Footer() {
           <p className="mt-4 max-w-2xl text-sm leading-6 text-white/70">{siteConfig.shortDescription}</p>
           <div className="mt-5 flex flex-wrap gap-3">
             <a
-              href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}
+              href={siteConfig.contact.phoneHref}
               className="inline-flex min-h-10 items-center gap-2 rounded-md border border-white/20 px-3 text-sm font-bold text-white transition hover:border-white/50"
             >
               <Phone size={16} /> {siteConfig.contact.phone}

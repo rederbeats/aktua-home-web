@@ -12,12 +12,13 @@ export const siteConfig = {
   contact: {
     email: "aktuahome@gmail.com",
     phone: "+34 644 952 873",
+    phoneHref: "tel:+34644952873",
     whatsapp: "34644952873",
     address: "Avenida de las Postas n\u00ba 35, 29014 M\u00e1laga (Espa\u00f1a)"
   },
   assets: {
-    logoHeader: "/assets/aktua-home-logo-header-transparent.png",
-    logoFooter: "/assets/aktua-home-logo.png",
+    logoHeader: "/assets/aktua-home-logo-2026.png",
+    logoFooter: "/assets/aktua-home-logo-2026.png",
     heroImage: "/assets/home-hero-real-estate.png"
   },
   navItems: [

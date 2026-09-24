@@ -28,7 +28,7 @@ export type PublicPropertyDetail = PublicPropertyCard & {
   images: { id: string; url: string; alt: string; isCover: boolean; sortOrder: number }[];
 };
 
-const fallbackImage = "/assets/aktua-home-logo.png";
+const fallbackImage = "/assets/aktua-home-logo-2026.png";
 
 type RawPropertyImage = {
   id: string;

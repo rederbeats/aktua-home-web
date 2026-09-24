@@ -70,7 +70,7 @@ export const sampleProperties: PropertyCard[] = [
     bedrooms: 2,
     bathrooms: 1,
     builtArea: 82,
-    imageUrl: "/assets/aktua-home-logo.png",
+    imageUrl: "/assets/aktua-home-logo-2026.png",
     isFeatured: true
   },
   {
@@ -85,6 +85,6 @@ export const sampleProperties: PropertyCard[] = [
     bedrooms: 3,
     bathrooms: 2,
     builtArea: 118,
-    imageUrl: "/assets/aktua-home-logo.png"
+    imageUrl: "/assets/aktua-home-logo-2026.png"
   }
 ];

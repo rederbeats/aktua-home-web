@@ -20,7 +20,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
           Estamos en Málaga y trabajamos principalmente en Málaga y provincia. Para financiación hipotecaria podemos atenderte desde cualquier punto de España.
         </p>
         <div className="mt-7 grid max-w-xl gap-3">
-          <a href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`} className="flex items-center gap-3 rounded-lg border border-black/10 bg-white p-4 font-bold shadow-sm transition hover:border-brand-red">
+          <a href={siteConfig.contact.phoneHref} className="flex items-center gap-3 rounded-lg border border-black/10 bg-white p-4 font-bold shadow-sm transition hover:border-brand-red">
             <Phone className="text-brand-red" size={21} />
             <span>{siteConfig.contact.phone}</span>
           </a>

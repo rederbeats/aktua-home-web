@@ -23,6 +23,7 @@ export const siteConfig = {
     { label: "Inicio", href: "/" },
     { label: "Comprar", href: "/comprar" },
     { label: "Vender", href: "/vender-mi-vivienda" },
+    { label: "Obra nueva", href: "/obra-nueva" },
     { label: "Hipotecas", href: "/hipotecas" },
     { label: "Servicios", href: "/servicios" },
     { label: "Blog", href: "/blog" },

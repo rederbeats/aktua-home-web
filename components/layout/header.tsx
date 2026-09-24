@@ -25,7 +25,7 @@ export function Header() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-1 rounded-full border border-black/10 bg-neutral-50 p-1 text-sm font-bold text-neutral-700 md:flex">
+        <nav className="hidden items-center gap-1 rounded-full border border-black/10 bg-neutral-50 p-1 text-sm font-bold text-neutral-700 lg:flex">
           {siteConfig.navItems.map((item) => (
             <Link key={item.href} href={item.href} className="rounded-full px-3 py-2 transition hover:bg-white hover:text-brand-red hover:shadow-sm">
               {item.label}
@@ -36,7 +36,7 @@ export function Header() {
         <button
           type="button"
           data-no-loading
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white text-brand-dark shadow-sm transition hover:border-brand-red hover:text-brand-red md:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white text-brand-dark shadow-sm transition hover:border-brand-red hover:text-brand-red lg:hidden"
           aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={isMenuOpen}
           onClick={() => setIsMenuOpen((current) => !current)}
@@ -46,7 +46,7 @@ export function Header() {
       </div>
 
       {isMenuOpen ? (
-        <nav className="border-t border-black/10 bg-white px-4 pb-5 pt-2 text-base font-bold text-neutral-800 shadow-xl md:hidden">
+        <nav className="border-t border-black/10 bg-white px-4 pb-5 pt-2 text-base font-bold text-neutral-800 shadow-xl lg:hidden">
           {siteConfig.navItems.map((item) => (
             <Link
               key={item.href}

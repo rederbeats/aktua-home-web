@@ -26,6 +26,7 @@ export function Footer() {
         </div>
         <nav className="grid gap-3 text-sm font-semibold text-white/75">
           <Link href="/sobre-aktua-home" className="transition hover:text-white">Sobre {siteConfig.brandName}</Link>
+          <Link href="/obra-nueva" className="transition hover:text-white">Obra nueva</Link>
           <Link href="/politica-privacidad" className="transition hover:text-white">Pol&iacute;tica de privacidad</Link>
           <Link href="/politica-cookies" className="transition hover:text-white">Pol&iacute;tica de cookies</Link>
           <Link href="/aviso-legal" className="transition hover:text-white">Aviso legal</Link>

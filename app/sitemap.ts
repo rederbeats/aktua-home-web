@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/comprar",
     "/vender-mi-vivienda",
+    "/obra-nueva",
     "/hipotecas",
     "/servicios",
     "/blog",

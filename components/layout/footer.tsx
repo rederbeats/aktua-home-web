@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { MessageCircle, Phone } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 
 export function Footer() {
@@ -11,6 +12,22 @@ export function Footer() {
             <Image src={siteConfig.assets.logoFooter} alt={siteConfig.brandName} width={126} height={49} />
           </div>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-white/70">{siteConfig.shortDescription}</p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <a
+              href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}
+              className="inline-flex min-h-10 items-center gap-2 rounded-md border border-white/20 px-3 text-sm font-bold text-white transition hover:border-white/50"
+            >
+              <Phone size={16} /> {siteConfig.contact.phone}
+            </a>
+            <a
+              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent("Hola, contacto desde la web de AKTUA HOME.")}`}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex min-h-10 items-center gap-2 rounded-md bg-green-600 px-3 text-sm font-bold text-white transition hover:bg-green-700"
+            >
+              <MessageCircle size={16} /> WhatsApp
+            </a>
+          </div>
           <p className="mt-5 text-xs font-semibold text-white/45">
             Web y tecnolog&iacute;a desarrolladas por{" "}
             <a

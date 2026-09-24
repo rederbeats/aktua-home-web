@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Mail, MessageCircle, Phone } from "lucide-react";
 import { LeadForm } from "@/components/forms/lead-form";
 import { siteConfig } from "@/lib/site-config";
 
@@ -18,6 +19,24 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
         <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-600">
           Cuéntanos qué necesitas y te responderemos con una primera orientación personalizada.
         </p>
+        <div className="mt-7 grid max-w-xl gap-3">
+          <a href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`} className="flex items-center gap-3 rounded-lg border border-black/10 bg-white p-4 font-bold shadow-sm transition hover:border-brand-red">
+            <Phone className="text-brand-red" size={21} />
+            <span>{siteConfig.contact.phone}</span>
+          </a>
+          <a href={`mailto:${siteConfig.contact.email}`} className="flex items-center gap-3 rounded-lg border border-black/10 bg-white p-4 font-bold shadow-sm transition hover:border-brand-red">
+            <Mail className="text-brand-red" size={21} />
+            <span>{siteConfig.contact.email}</span>
+          </a>
+          <a
+            href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent("Hola, contacto desde la web de AKTUA HOME.")}`}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center justify-center gap-2 rounded-md bg-green-600 p-4 font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-green-700"
+          >
+            <MessageCircle size={20} /> Escribir por WhatsApp
+          </a>
+        </div>
       </div>
       <aside className="rounded-lg border border-black/10 bg-white p-5 shadow-soft">
         <LeadForm type="contact" sourcePath="/contacto" status={lead} />

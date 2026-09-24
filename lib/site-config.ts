@@ -11,7 +11,8 @@ export const siteConfig = {
   publicSiteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://aktuahome.com",
   contact: {
     email: "aktuahome@gmail.com",
-    phone: "+34 654 54 47 96",
+    phone: "+34 644 952 873",
+    whatsapp: "34644952873",
     address: "Avenida de las Postas n\u00ba 35, 29014 M\u00e1laga (Espa\u00f1a)"
   },
   assets: {

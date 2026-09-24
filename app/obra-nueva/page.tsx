@@ -11,6 +11,8 @@ import {
   KeyRound,
   Landmark,
   Megaphone,
+  MessageCircle,
+  Phone,
   Users
 } from "lucide-react";
 import { MetaPixelEvent } from "@/components/analytics/meta-pixel-event";
@@ -101,12 +103,17 @@ export default async function NewBuildPage({ searchParams }: { searchParams: Pro
                 Quiero comercializar mi promoción <ArrowRight className="shrink-0" size={18} />
               </Link>
               <a
-                href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}
-                className="inline-flex min-h-12 items-center justify-center rounded-md border border-white/30 bg-white/10 px-5 py-3 text-center font-bold text-white backdrop-blur transition hover:bg-white hover:text-brand-dark"
+                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent("Hola, quiero información para comercializar una promoción de obra nueva.")}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-green-600 px-5 py-3 text-center font-bold text-white transition hover:-translate-y-0.5 hover:bg-green-700"
               >
-                Hablar con un asesor
+                <MessageCircle size={19} /> Hablar por WhatsApp
               </a>
             </div>
+            <a href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`} className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-white/80 transition hover:text-white">
+              <Phone size={17} /> También puedes llamarnos al {siteConfig.contact.phone}
+            </a>
           </div>
         </div>
       </section>
@@ -180,6 +187,20 @@ export default async function NewBuildPage({ searchParams }: { searchParams: Pro
                 </li>
               ))}
             </ul>
+            <div className="mt-7 rounded-lg border border-brand-red/15 bg-white p-4">
+              <p className="text-xs font-black uppercase text-neutral-500">Contacto directo</p>
+              <a href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`} className="mt-2 flex items-center gap-2 text-lg font-black text-brand-dark hover:text-brand-red">
+                <Phone size={19} className="text-brand-red" /> {siteConfig.contact.phone}
+              </a>
+              <a
+                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent("Hola, quiero información para comercializar una promoción de obra nueva.")}`}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-3 inline-flex min-h-11 items-center gap-2 rounded-md bg-green-600 px-4 font-bold text-white transition hover:bg-green-700"
+              >
+                <MessageCircle size={18} /> Contactar por WhatsApp
+              </a>
+            </div>
           </div>
           <div className="p-6 md:p-9">
             <h3 className="text-2xl font-black">Solicitar información</h3>

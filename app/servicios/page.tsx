@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Servicios",
-  description: "Compraventa, financiación hipotecaria, gestión documental, servicios jurídicos y traducciones juradas de " + siteConfig.brandName + "."
+  description: "Servicios inmobiliarios principalmente en Málaga y financiación hipotecaria en toda España con " + siteConfig.brandName + "."
 };
 
 const services = [
@@ -16,9 +16,9 @@ const services = [
   },
   {
     title: "Financiación hipotecaria",
-    intro: "Estudiamos tu caso y buscamos una financiación adaptada a tu perfil.",
+    intro: "Estudiamos tu caso y buscamos una financiación adaptada a tu perfil en cualquier punto de España.",
     icon: Landmark,
-    points: ["Préstamos hipotecarios de hasta el 95%.", "Estudio y gestión de financiación.", "Asesoramiento personalizado."]
+    points: ["Servicio disponible en toda España.", "Préstamos hipotecarios de hasta el 95%.", "Estudio, gestión y asesoramiento personalizado."]
   },
   {
     title: "Gestión documental y fiscal",
@@ -48,6 +48,9 @@ export default function ServicesPage() {
         <h1 className="mt-2 text-4xl font-black leading-tight md:text-6xl">Soluciones completas para tu operación inmobiliaria</h1>
         <p className="mt-4 max-w-3xl text-lg leading-8 text-neutral-600">
           En {siteConfig.brandName} no nos limitamos a enseñar viviendas. Te acompañamos en la compraventa, la financiación, la documentación, los impuestos y los trámites legales que pueden aparecer antes, durante y después de la firma.
+        </p>
+        <p className="mt-3 max-w-3xl font-bold leading-7 text-brand-dark">
+          Somos de Málaga y prestamos nuestros servicios inmobiliarios principalmente en Málaga y provincia. La financiación hipotecaria está disponible para clientes de toda España.
         </p>
       </div>
 

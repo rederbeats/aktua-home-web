@@ -5,7 +5,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Contacto",
-  description: "Contacta con " + siteConfig.brandName + "."
+  description: "Contacta con " + siteConfig.brandName + " en Málaga. Financiación hipotecaria disponible en toda España."
 };
 
 export default async function ContactPage({ searchParams }: { searchParams: Promise<{ lead?: string }> }) {
@@ -17,7 +17,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
         <p className="text-sm font-bold uppercase text-brand-red">Contacto</p>
         <h1 className="mt-2 text-4xl font-black">Hablemos de tu vivienda</h1>
         <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-600">
-          Cuéntanos qué necesitas y te responderemos con una primera orientación personalizada.
+          Estamos en Málaga y trabajamos principalmente en Málaga y provincia. Para financiación hipotecaria podemos atenderte desde cualquier punto de España.
         </p>
         <div className="mt-7 grid max-w-xl gap-3">
           <a href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`} className="flex items-center gap-3 rounded-lg border border-black/10 bg-white p-4 font-bold shadow-sm transition hover:border-brand-red">

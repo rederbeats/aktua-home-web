@@ -93,7 +93,7 @@ export default async function NewBuildPage({ searchParams }: { searchParams: Pro
               Tu promoción necesita una estrategia de venta a su altura.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/80 md:text-xl">
-              Ayudamos a promotores, constructores y propietarios de suelo a comercializar obra nueva con una gestión cercana, compradores cualificados y seguimiento hasta la firma.
+              Desde Málaga ayudamos principalmente a promotores, constructores y propietarios de suelo de Málaga y provincia a comercializar obra nueva con una gestión cercana, compradores cualificados y seguimiento hasta la firma.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link

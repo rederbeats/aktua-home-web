@@ -65,13 +65,13 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         <div className="container relative grid min-h-[calc(100svh-80px)] content-center gap-8 py-10 md:py-16 lg:grid-cols-[1fr_420px] lg:items-end">
           <div className="max-w-3xl py-8 md:py-12">
             <p className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-black uppercase text-red-100 backdrop-blur">
-              {siteConfig.brandName} {siteConfig.tagline.toLowerCase()}
+              Inmobiliaria de Málaga
             </p>
             <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.02] sm:text-5xl md:text-7xl">
               Compra, vende y firma con todo bajo control.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-white/85 md:text-lg md:leading-8">
-              Te acompañamos en compraventa, financiación hipotecaria, gestión documental, fiscalidad, servicios jurídicos y traducciones juradas.
+              Somos de Málaga y trabajamos principalmente en Málaga y provincia. Te acompañamos en compraventa y servicios inmobiliarios, y gestionamos financiación hipotecaria en toda España.
             </p>
             <div className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
               <Link href="/comprar" className="inline-flex h-12 min-w-0 items-center justify-center gap-2 rounded-md bg-brand-red px-3 text-center text-sm font-black text-white shadow-[0_18px_45px_rgba(200,16,34,0.35)] transition hover:-translate-y-0.5 hover:bg-red-700 sm:px-5 sm:text-base">
@@ -108,7 +108,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
       <section className="relative z-10 -mt-4 pb-6 md:-mt-8">
         <div className="container grid gap-3 rounded-lg border border-black/10 bg-white p-3 shadow-[0_22px_70px_rgba(17,17,17,0.12)] md:grid-cols-4">
           <TrustItem icon={<MapPin size={20} />} title="Compraventa" body="Compra, venta y seguimiento." />
-          <TrustItem icon={<Home size={20} />} title="Financiación" body="Hipotecas de hasta el 95%." />
+          <TrustItem icon={<Home size={20} />} title="Financiación" body="Hipotecas en toda España." />
           <TrustItem icon={<KeyRound size={20} />} title="Documentación" body="Escrituras, pagos e impuestos." />
           <TrustItem icon={<Calculator size={20} />} title="Jurídico" body="Herencias, donaciones y trámites." />
         </div>

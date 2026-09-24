@@ -6,8 +6,8 @@ export const siteConfig = {
   location: "M\u00e1laga",
   country: "Espa\u00f1a",
   tagline: "Inmobiliaria",
-  shortDescription: "Inmobiliaria en M\u00e1laga especializada en compraventa, financiaci\u00f3n, documentaci\u00f3n y acompa\u00f1amiento integral.",
-  seoDescription: "Portal inmobiliario y blog de AKTUA HOME.",
+  shortDescription: "Inmobiliaria de M\u00e1laga. Trabajamos principalmente en M\u00e1laga y ofrecemos financiaci\u00f3n hipotecaria en toda Espa\u00f1a.",
+  seoDescription: "Inmobiliaria en M\u00e1laga especializada en compraventa, obra nueva y financiaci\u00f3n hipotecaria en toda Espa\u00f1a.",
   publicSiteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://aktuahome.com",
   contact: {
     email: "aktuahome@gmail.com",

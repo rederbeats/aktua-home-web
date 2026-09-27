@@ -58,6 +58,15 @@ const services = [
   }
 ];
 
+const serviceTones = [
+  "bg-[#c81022]",
+  "bg-[#2f506f]",
+  "bg-[#163638]",
+  "bg-[#d6a756] text-black",
+  "bg-[#681522]",
+  "bg-[#3f4041]"
+];
+
 const steps = [
   "Conocemos la promoción, su situación y sus objetivos de venta.",
   "Definimos posicionamiento, precios, materiales y estrategia de captación.",
@@ -136,22 +145,22 @@ export default async function NewBuildPage({ searchParams }: { searchParams: Pro
         </div>
 
         <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => {
+          {services.map((service, index) => {
             const Icon = service.icon;
             return (
-              <article key={service.title} className="rounded-lg border border-black/10 bg-white p-5 shadow-soft transition hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(17,17,17,0.14)] md:p-6">
-                <div className="flex size-12 items-center justify-center rounded-md bg-red-50 text-brand-red">
+              <article key={service.title} className={`rounded-2xl border border-white/10 p-5 text-white transition hover:-translate-y-1 md:p-6 ${serviceTones[index]}`}>
+                <div className="flex size-12 items-center justify-center rounded-lg border border-current/25 bg-black/10">
                   <Icon size={25} />
                 </div>
-                <h3 className="mt-4 text-xl font-black">{service.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-neutral-600">{service.body}</p>
+                <h3 className="mt-4 text-2xl">{service.title}</h3>
+                <p className="mt-3 text-sm leading-7 opacity-75">{service.body}</p>
               </article>
             );
           })}
         </div>
       </section>
 
-      <section className="bg-brand-dark py-14 text-white md:py-20">
+      <section className="bg-[#2f506f] py-14 text-white md:py-20">
         <div className="container grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
           <div>
             <p className="section-kicker text-red-300">Cómo trabajamos</p>

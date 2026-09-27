@@ -12,19 +12,19 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
   const { lead } = await searchParams;
 
   return (
-    <section className="container grid gap-8 py-10 lg:grid-cols-[1fr_420px]">
-      <div>
+    <section className="container grid gap-5 py-10 lg:grid-cols-[1fr_420px]">
+      <div className="rounded-2xl bg-[#2f506f] p-6 md:p-8">
         <p className="text-sm font-bold uppercase text-brand-red">Contacto</p>
         <h1 className="mt-2 text-4xl font-black">Hablemos de tu vivienda</h1>
         <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-600">
           Estamos en Málaga y trabajamos principalmente en Málaga y provincia. Para financiación hipotecaria podemos atenderte desde cualquier punto de España.
         </p>
         <div className="mt-7 grid max-w-xl gap-3">
-          <a href={siteConfig.contact.phoneHref} className="flex items-center gap-3 rounded-lg border border-black/10 bg-white p-4 font-bold shadow-sm transition hover:border-brand-red">
+          <a href={siteConfig.contact.phoneHref} className="flex items-center gap-3 rounded-lg border border-white/15 bg-black/20 p-4 font-bold transition hover:border-[#d6a756]">
             <Phone className="text-brand-red" size={21} />
             <span>{siteConfig.contact.phone}</span>
           </a>
-          <a href={`mailto:${siteConfig.contact.email}`} className="flex items-center gap-3 rounded-lg border border-black/10 bg-white p-4 font-bold shadow-sm transition hover:border-brand-red">
+          <a href={`mailto:${siteConfig.contact.email}`} className="flex items-center gap-3 rounded-lg border border-white/15 bg-black/20 p-4 font-bold transition hover:border-[#d6a756]">
             <Mail className="text-brand-red" size={21} />
             <span>{siteConfig.contact.email}</span>
           </a>
@@ -38,7 +38,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
           </a>
         </div>
       </div>
-      <aside className="rounded-lg border border-black/10 bg-white p-5 shadow-soft">
+      <aside className="rounded-2xl border border-white/10 bg-[#163638] p-5 md:p-7">
         <LeadForm type="contact" sourcePath="/contacto" status={lead} />
       </aside>
     </section>

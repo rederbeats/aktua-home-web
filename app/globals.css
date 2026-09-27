@@ -12,6 +12,11 @@
   --origin-ash: #9f9fa0;
   --origin-cloud: #f5f5f7;
   --origin-iris: #c81022;
+  --aktua-coral: #e85d5d;
+  --aktua-wine: #681522;
+  --aktua-petrol: #163638;
+  --aktua-blue: #2f506f;
+  --aktua-gold: #d6a756;
 }
 
 * {
@@ -103,7 +108,7 @@ textarea::placeholder {
 }
 
 .section-kicker {
-  color: var(--origin-ash);
+  color: var(--aktua-coral);
   font-family: Consolas, "Courier New", monospace;
   font-size: 0.72rem;
   font-weight: 500;
@@ -174,15 +179,16 @@ textarea::placeholder {
 }
 
 .origin-primary {
-  background: #ffffff !important;
-  color: #000000 !important;
-  border: 1px solid #ffffff !important;
+  background: #c81022 !important;
+  color: #ffffff !important;
+  border: 1px solid #c81022 !important;
   border-radius: 8px !important;
   box-shadow: none !important;
 }
 
 .origin-primary:hover {
-  background: #cacaca !important;
+  background: #9f0d1b !important;
+  border-color: #9f0d1b !important;
 }
 
 .origin-panel {

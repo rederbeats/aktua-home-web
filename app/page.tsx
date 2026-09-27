@@ -44,10 +44,10 @@ const steps = [
 
 const serviceTones = [
   "bg-[#c81022] text-white",
-  "bg-[#efefed] text-black",
-  "bg-[#171719] text-white",
-  "bg-[#8f0b18] text-white",
-  "bg-[#3f4041] text-white"
+  "bg-[#2f506f] text-white",
+  "bg-[#d6a756] text-black",
+  "bg-[#681522] text-white",
+  "bg-[#163638] text-white"
 ];
 
 export default async function HomePage({ searchParams }: { searchParams: Promise<{ lead?: string }> }) {
@@ -122,15 +122,17 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         </div>
       </section>
 
-      <section className="container py-12">
-        <div className="mb-5 max-w-3xl">
-          <p className="section-kicker">Buscar vivienda</p>
-          <h2 className="mt-2 text-3xl font-black leading-tight md:text-5xl">Encuentra una casa que encaje contigo, no solo con el presupuesto.</h2>
+      <section className="bg-[#163638] py-12 md:py-16">
+        <div className="container">
+          <div className="mb-5 max-w-3xl">
+            <p className="section-kicker text-[#f0c36d]">Buscar vivienda</p>
+            <h2 className="mt-2 text-3xl font-black leading-tight md:text-5xl">Encuentra una casa que encaje contigo, no solo con el presupuesto.</h2>
+          </div>
+          <PropertySearch />
         </div>
-        <PropertySearch />
       </section>
 
-      <section className="border-y border-black/10 bg-white py-14 md:py-20">
+      <section className="border-y border-white/10 bg-[#151d29] py-14 md:py-20">
         <div className="container grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
             <p className="section-kicker">Servicios</p>
@@ -162,31 +164,33 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         </div>
       </section>
 
-      <section className="container py-14">
-        <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="section-kicker">Destacados</p>
-            <h2 className="mt-2 text-3xl font-black md:text-5xl">Viviendas publicadas</h2>
+      <section className="bg-[#21171b] py-14">
+        <div className="container">
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="section-kicker text-[#d6a756]">Destacados</p>
+              <h2 className="mt-2 text-3xl font-black md:text-5xl">Viviendas publicadas</h2>
+            </div>
+            <Link href="/comprar" className="inline-flex h-11 items-center gap-2 rounded-lg border border-white/25 px-4 text-white transition hover:bg-white hover:text-black">
+              Ver todos <ArrowRight size={17} />
+            </Link>
           </div>
-          <Link href="/comprar" className="inline-flex h-11 items-center gap-2 rounded-lg border border-white/25 px-4 text-white transition hover:bg-white hover:text-black">
-            Ver todos <ArrowRight size={17} />
-          </Link>
-        </div>
 
-        {featuredProperties.length ? (
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {featuredProperties.map((property) => (
-              <PropertyCard key={property.id} property={property} />
-            ))}
-          </div>
-        ) : (
-          <div className="rounded-2xl border border-white/10 bg-[#2e2e2e] p-8 text-center text-neutral-500">
-            Estamos preparando una selección de viviendas destacadas. Contacta con nosotros y te ayudamos a encontrar la opción adecuada.
-          </div>
-        )}
+          {featuredProperties.length ? (
+            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {featuredProperties.map((property) => (
+                <PropertyCard key={property.id} property={property} />
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-2xl border border-white/10 bg-[#2e2e2e] p-8 text-center text-neutral-500">
+              Estamos preparando una selección de viviendas destacadas. Contacta con nosotros y te ayudamos a encontrar la opción adecuada.
+            </div>
+          )}
+        </div>
       </section>
 
-      <section className="bg-brand-dark py-14 text-white md:py-20">
+      <section className="bg-[#681522] py-14 text-white md:py-20">
         <div className="container grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <p className="section-kicker text-red-300">Método {siteConfig.brandName}</p>
@@ -217,8 +221,8 @@ function HeroStat({ value, label }: { value: string; label: string }) {
 
 function TrustItem({ icon, title, body }: { icon: React.ReactNode; title: string; body: string }) {
   return (
-    <article className="flex gap-3 bg-[#1b1c1d] p-5 transition hover:bg-[#2e2e2e]">
-      <div className="mt-1 text-white">{icon}</div>
+    <article className="flex gap-3 bg-[#1b1c1d] p-5 transition odd:border-t-2 odd:border-[#c81022] even:border-t-2 even:border-[#d6a756] hover:bg-[#2e2e2e]">
+      <div className="mt-1 text-[#e85d5d]">{icon}</div>
       <div>
         <h2 className="text-lg">{title}</h2>
         <p className="mt-1 text-sm text-neutral-600">{body}</p>

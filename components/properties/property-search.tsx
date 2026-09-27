@@ -3,7 +3,7 @@ import type { PropertyFilters } from "@/lib/properties/public-properties";
 
 export function PropertySearch({ filters = {} }: { filters?: PropertyFilters }) {
   return (
-    <form className="rounded-2xl border border-white/10 bg-[#2e2e2e] p-4 md:p-6">
+    <form className="rounded-2xl border border-white/15 bg-[#102829] p-4 md:p-6">
       <div className="grid gap-3 lg:grid-cols-[1.35fr_repeat(5,1fr)_auto]">
         <label className="grid gap-1 text-sm font-semibold text-neutral-700">
           Zona

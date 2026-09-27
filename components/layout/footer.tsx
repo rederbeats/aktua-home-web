@@ -5,7 +5,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#090a0b] text-white">
+    <footer className="border-t border-[#c81022]/40 bg-[#16090c] text-white">
       <div className="container grid gap-12 py-14 md:grid-cols-[1fr_auto] md:py-20">
         <div>
           <div className="inline-flex">

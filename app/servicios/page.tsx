@@ -40,18 +40,10 @@ const services = [
   }
 ];
 
-const serviceTones = [
-  "bg-[#c81022] text-white",
-  "bg-[#4a171f] text-white",
-  "bg-[#e7c9cc] text-black",
-  "bg-[#6b101d] text-white",
-  "bg-[#292123] text-white"
-];
-
 export default function ServicesPage() {
   return (
     <section className="container py-10 md:py-14">
-      <div className="rounded-2xl border border-white/10 bg-[#4a171f] p-6 md:p-8">
+      <div className="rounded-lg border border-black/10 bg-white p-6 shadow-soft md:p-8">
         <p className="section-kicker">Servicios</p>
         <h1 className="mt-2 text-4xl font-black leading-tight md:text-6xl">Soluciones completas para tu operación inmobiliaria</h1>
         <p className="mt-4 max-w-3xl text-lg leading-8 text-neutral-600">
@@ -63,23 +55,23 @@ export default function ServicesPage() {
       </div>
 
       <div className="mt-8 grid gap-5 md:grid-cols-2">
-        {services.map((service, index) => {
+        {services.map((service) => {
           const Icon = service.icon;
           return (
-            <article key={service.title} className={`min-w-0 rounded-2xl border border-white/10 p-5 transition hover:-translate-y-1 md:p-6 ${serviceTones[index]}`}>
+            <article key={service.title} className="rounded-lg border border-black/10 bg-white p-5 shadow-soft transition hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(17,17,17,0.14)] md:p-6">
               <div className="flex items-start gap-4">
-                <div className="flex size-12 shrink-0 items-center justify-center rounded-lg border border-current/25 bg-black/10">
+                <div className="flex size-12 shrink-0 items-center justify-center rounded-md bg-red-50 text-brand-red">
                   <Icon size={25} />
                 </div>
                 <div>
-                  <h2 className="[overflow-wrap:anywhere] text-2xl leading-tight">{service.title}</h2>
-                  <p className="mt-2 leading-7 opacity-75">{service.intro}</p>
+                  <h2 className="text-2xl font-black leading-tight">{service.title}</h2>
+                  <p className="mt-2 leading-7 text-neutral-600">{service.intro}</p>
                 </div>
               </div>
-              <ul className="mt-5 grid gap-3 text-sm font-semibold opacity-80">
+              <ul className="mt-5 grid gap-3 text-sm font-semibold text-neutral-700">
                 {service.points.map((point) => (
                   <li key={point} className="flex gap-2">
-                    <BadgeCheck className="mt-0.5 shrink-0" size={17} />
+                    <BadgeCheck className="mt-0.5 shrink-0 text-brand-red" size={17} />
                     <span>{point}</span>
                   </li>
                 ))}

@@ -28,7 +28,7 @@ export default async function MortgagesPage({ searchParams }: { searchParams: Pr
       ) : null}
 
       <section className="container py-10 md:py-14">
-        <div className="rounded-2xl border border-white/10 bg-[#4a171f] p-6 md:p-8">
+        <div className="rounded-lg border border-black/10 bg-white p-6 shadow-soft md:p-8">
           <p className="section-kicker">Financiación hipotecaria en toda España</p>
           <h1 className="mt-2 text-4xl font-black leading-tight md:text-6xl">Hipotecas de hasta el 95%</h1>
           <p className="mt-4 max-w-3xl text-lg leading-8 text-neutral-600">
@@ -48,7 +48,7 @@ export default async function MortgagesPage({ searchParams }: { searchParams: Pr
       <MortgageSimulator />
 
       <section id="consulta-hipoteca" className="container scroll-mt-28 pb-12 md:pb-16">
-        <div className="grid gap-6 rounded-2xl border border-white/10 bg-[#6b101d] p-5 md:p-8 lg:grid-cols-[0.8fr_1.2fr]">
+        <div className="grid gap-6 rounded-lg border border-black/10 bg-white p-5 shadow-soft md:p-8 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <p className="section-kicker">Estudio personalizado</p>
             <h2 className="mt-2 text-3xl font-black leading-tight md:text-4xl">Consultar financiación</h2>

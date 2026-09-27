@@ -42,14 +42,6 @@ const steps = [
   "Te acompañamos hasta la firma y el cierre."
 ];
 
-const serviceTones = [
-  "bg-[#c81022] text-white",
-  "bg-[#4a171f] text-white",
-  "bg-[#e7c9cc] text-black",
-  "bg-[#6b101d] text-white",
-  "bg-[#292123] text-white"
-];
-
 export default async function HomePage({ searchParams }: { searchParams: Promise<{ lead?: string }> }) {
   const { lead } = await searchParams;
   const properties = await getPublishedProperties({ sort: "recent" });
@@ -70,39 +62,39 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/50 to-transparent" />
         </div>
 
-        <div className="container relative flex min-h-[calc(100svh-72px)] flex-col items-center justify-center py-16 text-center md:py-24">
-          <div className="max-w-5xl">
-            <p className="origin-label inline-flex rounded-full border border-white/15 bg-white/10 px-6 py-2 text-white backdrop-blur">
+        <div className="container relative grid min-h-[calc(100svh-80px)] content-center gap-8 py-10 md:py-16 lg:grid-cols-[1fr_420px] lg:items-end">
+          <div className="max-w-3xl py-8 md:py-12">
+            <p className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-black uppercase text-red-100 backdrop-blur">
               Inmobiliaria de Málaga
             </p>
-            <h1 className="origin-display mt-8 text-5xl leading-[0.92] sm:text-6xl md:text-[6rem]">
+            <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.02] sm:text-5xl md:text-7xl">
               Compra, vende y firma con todo bajo control.
             </h1>
-            <p className="mx-auto mt-8 max-w-2xl text-base leading-7 text-white/70 md:text-lg md:leading-8">
+            <p className="mt-5 max-w-2xl text-base leading-7 text-white/85 md:text-lg md:leading-8">
               Somos de Málaga y trabajamos principalmente en Málaga y provincia. Te acompañamos en compraventa y servicios inmobiliarios, y gestionamos financiación hipotecaria en toda España.
             </p>
-            <div className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:justify-center">
-              <Link href="/comprar" className="origin-primary inline-flex h-12 min-w-0 items-center justify-center gap-2 px-4 text-center text-sm font-medium transition sm:px-5 sm:text-base">
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
+              <Link href="/comprar" className="inline-flex h-12 min-w-0 items-center justify-center gap-2 rounded-md bg-brand-red px-3 text-center text-sm font-black text-white shadow-[0_18px_45px_rgba(200,16,34,0.35)] transition hover:-translate-y-0.5 hover:bg-red-700 sm:px-5 sm:text-base">
                 Ver viviendas <ArrowRight size={18} />
               </Link>
-              <Link href="/vender-mi-vivienda" className="inline-flex h-12 min-w-0 items-center justify-center rounded-lg border border-white px-3 text-center text-sm text-white transition hover:bg-white hover:text-black sm:px-5 sm:text-base">
+              <Link href="/vender-mi-vivienda" className="inline-flex h-12 min-w-0 items-center justify-center rounded-md bg-white px-3 text-center text-sm font-black text-brand-dark shadow-xl transition hover:-translate-y-0.5 sm:px-5 sm:text-base">
                 Valorar mi vivienda
               </Link>
             </div>
-            <div className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-3 text-center min-[520px]:grid-cols-3">
+            <div className="mt-8 grid max-w-2xl grid-cols-1 gap-2 text-center min-[520px]:grid-cols-3 md:gap-3 md:text-left">
               <HeroStat value="Sin complicaciones" label="Nos ocupamos de todo" />
               <HeroStat value="Hasta 95%" label="Financiación" />
               <HeroStat value="Valoración" label="Gratuita y sin compromiso" />
             </div>
           </div>
 
-          <aside className="origin-panel mt-10 w-full max-w-2xl rounded-2xl p-6 text-left md:p-8">
+          <aside className="rounded-lg border border-white/25 bg-white/95 p-5 text-brand-dark shadow-[0_30px_80px_rgba(0,0,0,0.28)] backdrop-blur">
             <div className="flex items-center gap-3">
-              <div className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-white text-black">
+              <div className="flex size-11 shrink-0 items-center justify-center rounded-md bg-red-50 text-brand-red">
                 <MessageCircle size={22} />
               </div>
               <div>
-                <h2 className="text-2xl">Hablemos de tu operación</h2>
+                <h2 className="text-xl font-black">Hablemos de tu operación</h2>
                 <p className="text-sm text-neutral-600">Te respondemos con una primera orientación.</p>
               </div>
             </div>
@@ -114,7 +106,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
       </section>
 
       <section className="relative z-10 -mt-4 pb-6 md:-mt-8">
-        <div className="container grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-4">
+        <div className="container grid gap-3 rounded-lg border border-black/10 bg-white p-3 shadow-[0_22px_70px_rgba(17,17,17,0.12)] md:grid-cols-4">
           <TrustItem icon={<MapPin size={20} />} title="Compraventa" body="Compra, venta y seguimiento." />
           <TrustItem icon={<Home size={20} />} title="Financiación" body="Hipotecas en toda España." />
           <TrustItem icon={<KeyRound size={20} />} title="Documentación" body="Escrituras, pagos e impuestos." />
@@ -122,17 +114,15 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         </div>
       </section>
 
-      <section className="bg-[#292123] py-12 md:py-16">
-        <div className="container">
-          <div className="mb-5 max-w-3xl">
-            <p className="section-kicker text-[#f0b1b7]">Buscar vivienda</p>
-            <h2 className="mt-2 text-3xl font-black leading-tight md:text-5xl">Encuentra una casa que encaje contigo, no solo con el presupuesto.</h2>
-          </div>
-          <PropertySearch />
+      <section className="container py-12">
+        <div className="mb-5 max-w-3xl">
+          <p className="section-kicker">Buscar vivienda</p>
+          <h2 className="mt-2 text-3xl font-black leading-tight md:text-5xl">Encuentra una casa que encaje contigo, no solo con el presupuesto.</h2>
         </div>
+        <PropertySearch />
       </section>
 
-      <section className="border-y border-white/10 bg-[#1c1819] py-14 md:py-20">
+      <section className="border-y border-black/10 bg-white py-14 md:py-20">
         <div className="container grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
             <p className="section-kicker">Servicios</p>
@@ -140,23 +130,20 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
             <p className="mt-4 leading-8 text-neutral-600">
               No se trata solo de vender o comprar una vivienda. Se trata de tener controlados la financiación, los documentos, los impuestos y los trámites legales.
             </p>
-            <Link href="/servicios" className="origin-primary mt-6 inline-flex h-11 items-center gap-2 px-4 font-medium transition">
+            <Link href="/servicios" className="mt-6 inline-flex h-11 items-center gap-2 rounded-md bg-brand-dark px-4 font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-brand-red">
               Ver servicios <ArrowRight size={17} />
             </Link>
           </div>
-          <div className="grid min-w-0 gap-4 md:grid-cols-2">
-            {services.map((service, index) => {
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {services.map((service) => {
               const Icon = service.icon;
               return (
-                <article
-                  key={service.title}
-                  className={`min-w-0 overflow-hidden rounded-2xl border border-white/10 p-6 transition duration-200 hover:-translate-y-1 md:min-h-[280px] md:p-7 ${index === services.length - 1 ? "md:col-span-2 md:min-h-0" : ""} ${serviceTones[index]}`}
-                >
-                  <div className="flex size-11 items-center justify-center rounded-lg border border-current/25 bg-black/10">
+                <article key={service.title} className="rounded-lg border border-black/10 bg-gradient-to-b from-white to-paper p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
+                  <div className="flex size-11 items-center justify-center rounded-md bg-red-50 text-brand-red">
                     <Icon size={24} />
                   </div>
-                  <h3 className="mt-8 max-w-full [overflow-wrap:anywhere] text-2xl leading-[1.05] sm:text-3xl">{service.title}</h3>
-                  <p className="mt-5 max-w-xl text-sm leading-6 opacity-75">{service.body}</p>
+                  <h3 className="mt-4 text-xl font-black">{service.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-neutral-600">{service.body}</p>
                 </article>
               );
             })}
@@ -164,33 +151,31 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         </div>
       </section>
 
-      <section className="bg-[#25191c] py-14">
-        <div className="container">
-          <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="section-kicker text-[#e7c9cc]">Destacados</p>
-              <h2 className="mt-2 text-3xl font-black md:text-5xl">Viviendas publicadas</h2>
-            </div>
-            <Link href="/comprar" className="inline-flex h-11 items-center gap-2 rounded-lg border border-white/25 px-4 text-white transition hover:bg-white hover:text-black">
-              Ver todos <ArrowRight size={17} />
-            </Link>
+      <section className="container py-14">
+        <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="section-kicker">Destacados</p>
+            <h2 className="mt-2 text-3xl font-black md:text-5xl">Viviendas publicadas</h2>
           </div>
-
-          {featuredProperties.length ? (
-            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {featuredProperties.map((property) => (
-                <PropertyCard key={property.id} property={property} />
-              ))}
-            </div>
-          ) : (
-            <div className="rounded-2xl border border-white/10 bg-[#2e2e2e] p-8 text-center text-neutral-500">
-              Estamos preparando una selección de viviendas destacadas. Contacta con nosotros y te ayudamos a encontrar la opción adecuada.
-            </div>
-          )}
+          <Link href="/comprar" className="inline-flex h-11 items-center gap-2 rounded-md border border-black/15 bg-white px-4 font-bold shadow-sm transition hover:border-brand-red hover:text-brand-red">
+            Ver todos <ArrowRight size={17} />
+          </Link>
         </div>
+
+        {featuredProperties.length ? (
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {featuredProperties.map((property) => (
+              <PropertyCard key={property.id} property={property} />
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-lg border border-black/10 bg-white p-8 text-center text-neutral-500 shadow-soft">
+            Estamos preparando una selección de viviendas destacadas. Contacta con nosotros y te ayudamos a encontrar la opción adecuada.
+          </div>
+        )}
       </section>
 
-      <section className="bg-[#6b101d] py-14 text-white md:py-20">
+      <section className="bg-brand-dark py-14 text-white md:py-20">
         <div className="container grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <p className="section-kicker text-red-300">Método {siteConfig.brandName}</p>
@@ -198,9 +183,9 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
           </div>
           <div className="grid gap-3 md:grid-cols-2">
             {steps.map((step, index) => (
-              <div key={step} className="rounded-2xl border border-white/10 bg-[#2e2e2e] p-6">
-                <span className="origin-label text-white/50">0{index + 1}</span>
-                <p className="mt-4 text-lg text-white/85">{step}</p>
+              <div key={step} className="rounded-lg border border-white/15 bg-white/10 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+                <span className="text-sm font-black text-red-300">0{index + 1}</span>
+                <p className="mt-2 text-lg font-bold">{step}</p>
               </div>
             ))}
           </div>
@@ -212,19 +197,19 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
 
 function HeroStat({ value, label }: { value: string; label: string }) {
   return (
-    <div className="min-w-0 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur">
-      <strong className="origin-display block [overflow-wrap:anywhere] text-xl leading-tight text-white">{value}</strong>
-      <span className="origin-label mt-2 block break-words text-white/55">{label}</span>
+    <div className="min-w-0 rounded-lg border border-white/15 bg-white/10 p-3 backdrop-blur">
+      <strong className="block [overflow-wrap:anywhere] text-lg font-black leading-tight text-white">{value}</strong>
+      <span className="mt-1 block break-words text-[11px] font-semibold leading-tight text-white/70 md:text-xs">{label}</span>
     </div>
   );
 }
 
 function TrustItem({ icon, title, body }: { icon: React.ReactNode; title: string; body: string }) {
   return (
-    <article className="flex gap-3 bg-[#1b1c1d] p-5 transition odd:border-t-2 odd:border-[#c81022] even:border-t-2 even:border-[#e7c9cc] hover:bg-[#2e2e2e]">
-      <div className="mt-1 text-[#e06a73]">{icon}</div>
+    <article className="flex gap-3 rounded-md bg-paper p-4 transition hover:bg-red-50">
+      <div className="mt-1 text-brand-red">{icon}</div>
       <div>
-        <h2 className="text-lg">{title}</h2>
+        <h2 className="font-black">{title}</h2>
         <p className="mt-1 text-sm text-neutral-600">{body}</p>
       </div>
     </article>

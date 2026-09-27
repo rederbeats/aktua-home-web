@@ -57,12 +57,12 @@ export function MortgageSimulator() {
   }, [price, savings, years, interest]);
 
   return (
-    <section className="bg-[#0f1011] py-10 md:py-16">
-      <div className="container overflow-hidden rounded-2xl border border-white/10 bg-[#090a0b]">
+    <section className="bg-white py-10 md:py-16">
+      <div className="container overflow-hidden rounded-lg border border-black/10 bg-paper shadow-soft">
         <div className="grid lg:grid-cols-[1.22fr_0.78fr]">
           <div className="p-5 md:p-8 lg:p-10">
             <div className="flex items-start gap-4 border-b border-black/10 pb-6">
-              <span className="origin-label mt-1 grid size-10 shrink-0 place-items-center rounded-lg bg-brand-red text-white">01</span>
+              <span className="mt-1 grid size-10 shrink-0 place-items-center rounded-md bg-brand-red text-sm font-black text-white">01</span>
               <div>
                 <p className="section-kicker">Simulador hipotecario</p>
                 <h2 className="mt-2 text-3xl font-black leading-tight md:text-5xl">Calcula una cuota orientativa</h2>
@@ -101,7 +101,7 @@ export function MortgageSimulator() {
             </div>
           </div>
 
-          <aside className="bg-[#2e2e2e] p-5 text-white md:p-8 lg:p-10">
+          <aside className="bg-brand-dark p-5 text-white md:p-8 lg:p-10">
             <p className="section-kicker text-red-300">Cuota mensual estimada</p>
             <div className="mt-6 flex flex-wrap items-end gap-x-2 gap-y-1">
               <strong className="text-5xl font-black leading-none md:text-6xl">{numberFormatter.format(Math.round(result.monthlyPayment))} €</strong>
@@ -115,19 +115,19 @@ export function MortgageSimulator() {
               <ResultRow label="Importe total" value={formatCurrency(result.totalPaid)} />
             </div>
 
-            <div className="mt-8 rounded-2xl bg-[#e7c9cc] p-5 text-black">
+            <div className="mt-8 border-l-4 border-brand-red bg-white/10 p-5">
               <div className="flex items-center gap-2 text-sm font-black">
-                <Zap size={16} />
+                <Zap size={16} className="text-red-300" />
                 Ingresos recomendados
               </div>
-              <p className="mt-2 text-sm leading-6 text-black/70">
-                Para no superar un 35% de esfuerzo financiero: <strong className="text-black">{formatCurrency(result.recommendedIncome)}/mes</strong>
+              <p className="mt-2 text-sm leading-6 text-white/70">
+                Para no superar un 35% de esfuerzo financiero: <strong className="text-white">{formatCurrency(result.recommendedIncome)}/mes</strong>
               </p>
             </div>
 
             <a
               href="#consulta-hipoteca"
-              className="origin-primary mt-8 flex min-h-14 items-center justify-between px-5 font-medium transition"
+              className="mt-8 flex min-h-14 items-center justify-between rounded-md bg-brand-red px-5 font-black text-white shadow-[0_18px_40px_rgba(200,16,34,0.28)] transition hover:-translate-y-0.5 hover:bg-red-700"
             >
               Solicitar estudio personalizado
               <ArrowRight size={20} />
@@ -156,15 +156,15 @@ function NumberField({ label, value, suffix, min, max, step, decimals = 0, onCha
 
   return (
     <label className="grid gap-3">
-      <span className="origin-label text-neutral-500">{label}</span>
-      <span className="grid grid-cols-[1fr_auto] items-center rounded-lg border border-white/10 bg-black focus-within:border-white/40">
+      <span className="text-xs font-black uppercase tracking-[0.12em] text-neutral-500">{label}</span>
+      <span className="grid grid-cols-[1fr_auto] items-center rounded-md border border-black/10 bg-white focus-within:border-brand-red focus-within:shadow-[0_0_0_4px_rgba(200,16,34,0.12)]">
         <input
           value={displayValue}
           inputMode="decimal"
           onChange={(event) => onChange(clamp(parseValue(event.target.value, value), min, max))}
           className="h-16 min-w-0 border-0 bg-transparent px-4 text-2xl font-black outline-none focus:shadow-none"
         />
-        <span className="px-4 font-mono text-sm text-white/60">{suffix}</span>
+        <span className="px-4 text-sm font-black text-brand-red">{suffix}</span>
       </span>
       <input
         aria-label={label + " slider"}

@@ -58,15 +58,6 @@ const services = [
   }
 ];
 
-const serviceTones = [
-  "bg-[#c81022]",
-  "bg-[#4a171f]",
-  "bg-[#292123]",
-  "bg-[#e7c9cc] text-black",
-  "bg-[#6b101d]",
-  "bg-[#3f4041]"
-];
-
 const steps = [
   "Conocemos la promoción, su situación y sus objetivos de venta.",
   "Definimos posicionamiento, precios, materiales y estrategia de captación.",
@@ -107,7 +98,7 @@ export default async function NewBuildPage({ searchParams }: { searchParams: Pro
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="#contacto-obra-nueva"
-                className="origin-primary inline-flex min-h-12 items-center justify-center gap-2 px-5 py-3 text-center font-medium transition"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-brand-red px-5 py-3 text-center font-black text-white shadow-[0_18px_45px_rgba(200,16,34,0.35)] transition hover:-translate-y-0.5 hover:bg-red-700"
               >
                 Quiero comercializar mi promoción <ArrowRight className="shrink-0" size={18} />
               </Link>
@@ -115,7 +106,7 @@ export default async function NewBuildPage({ searchParams }: { searchParams: Pro
                 href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent("Hola, quiero información para comercializar una promoción de obra nueva.")}`}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white px-5 py-3 text-center text-white transition hover:bg-white hover:text-black"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-green-600 px-5 py-3 text-center font-bold text-white transition hover:-translate-y-0.5 hover:bg-green-700"
               >
                 <MessageCircle size={19} /> Hablar por WhatsApp
               </a>
@@ -145,22 +136,22 @@ export default async function NewBuildPage({ searchParams }: { searchParams: Pro
         </div>
 
         <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, index) => {
+          {services.map((service) => {
             const Icon = service.icon;
             return (
-              <article key={service.title} className={`rounded-2xl border border-white/10 p-5 text-white transition hover:-translate-y-1 md:p-6 ${serviceTones[index]}`}>
-                <div className="flex size-12 items-center justify-center rounded-lg border border-current/25 bg-black/10">
+              <article key={service.title} className="rounded-lg border border-black/10 bg-white p-5 shadow-soft transition hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(17,17,17,0.14)] md:p-6">
+                <div className="flex size-12 items-center justify-center rounded-md bg-red-50 text-brand-red">
                   <Icon size={25} />
                 </div>
-                <h3 className="mt-4 text-2xl">{service.title}</h3>
-                <p className="mt-3 text-sm leading-7 opacity-75">{service.body}</p>
+                <h3 className="mt-4 text-xl font-black">{service.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-neutral-600">{service.body}</p>
               </article>
             );
           })}
         </div>
       </section>
 
-      <section className="bg-[#4a171f] py-14 text-white md:py-20">
+      <section className="bg-brand-dark py-14 text-white md:py-20">
         <div className="container grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
           <div>
             <p className="section-kicker text-red-300">Cómo trabajamos</p>
@@ -205,7 +196,7 @@ export default async function NewBuildPage({ searchParams }: { searchParams: Pro
                 href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent("Hola, quiero información para comercializar una promoción de obra nueva.")}`}
                 target="_blank"
                 rel="noreferrer"
-                className="origin-primary mt-3 inline-flex min-h-11 items-center gap-2 px-4 font-medium transition"
+                className="mt-3 inline-flex min-h-11 items-center gap-2 rounded-md bg-green-600 px-4 font-bold text-white transition hover:bg-green-700"
               >
                 <MessageCircle size={18} /> Contactar por WhatsApp
               </a>

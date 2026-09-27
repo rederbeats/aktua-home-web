@@ -12,7 +12,7 @@ const config: Config = {
         ink: "#f5f5f7",
         paper: "#090a0b",
         brand: {
-          red: "#847dff",
+          red: "#c81022",
           dark: "#0f1011"
         }
       },

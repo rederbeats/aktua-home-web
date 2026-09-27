@@ -62,7 +62,7 @@ export function MortgageSimulator() {
         <div className="grid lg:grid-cols-[1.22fr_0.78fr]">
           <div className="p-5 md:p-8 lg:p-10">
             <div className="flex items-start gap-4 border-b border-black/10 pb-6">
-              <span className="origin-label mt-1 grid size-10 shrink-0 place-items-center rounded-lg bg-[#847dff] text-white">01</span>
+              <span className="origin-label mt-1 grid size-10 shrink-0 place-items-center rounded-lg bg-brand-red text-white">01</span>
               <div>
                 <p className="section-kicker">Simulador hipotecario</p>
                 <h2 className="mt-2 text-3xl font-black leading-tight md:text-5xl">Calcula una cuota orientativa</h2>
@@ -89,7 +89,7 @@ export function MortgageSimulator() {
               </div>
               <div className="mt-4 h-2 overflow-hidden rounded-full bg-black/10">
                 <div
-                  className="h-full rounded-full bg-[#00b3dd] transition-all duration-300"
+                  className="h-full rounded-full bg-brand-red transition-all duration-300"
                   style={{ width: `${clamp(result.financingRatio, 0, 100)}%` }}
                 />
               </div>
@@ -174,7 +174,7 @@ function NumberField({ label, value, suffix, min, max, step, decimals = 0, onCha
         step={step}
         value={clamp(value, min, max)}
         onChange={(event) => onChange(Number(event.target.value))}
-        className="h-2 cursor-pointer accent-[#00b3dd]"
+        className="h-2 cursor-pointer accent-brand-red"
       />
     </label>
   );

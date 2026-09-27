@@ -43,11 +43,11 @@ const steps = [
 ];
 
 const serviceTones = [
-  "bg-[#847dff] text-white",
-  "bg-[#cacaca] text-black",
-  "bg-[#4b49aa] text-white",
-  "bg-[#dd90d8] text-black",
-  "bg-[#90b8f0] text-black"
+  "bg-[#c81022] text-white",
+  "bg-[#efefed] text-black",
+  "bg-[#171719] text-white",
+  "bg-[#8f0b18] text-white",
+  "bg-[#3f4041] text-white"
 ];
 
 export default async function HomePage({ searchParams }: { searchParams: Promise<{ lead?: string }> }) {
@@ -142,16 +142,19 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
               Ver servicios <ArrowRight size={17} />
             </Link>
           </div>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid min-w-0 gap-4 md:grid-cols-2">
             {services.map((service, index) => {
               const Icon = service.icon;
               return (
-                <article key={service.title} className={`min-h-[260px] rounded-[30px] p-6 transition duration-200 hover:opacity-90 ${serviceTones[index]}`}>
-                  <div className="flex size-11 items-center justify-center rounded-lg border border-current/20 bg-black/10">
+                <article
+                  key={service.title}
+                  className={`min-w-0 overflow-hidden rounded-2xl border border-white/10 p-6 transition duration-200 hover:-translate-y-1 md:min-h-[280px] md:p-7 ${index === services.length - 1 ? "md:col-span-2 md:min-h-0" : ""} ${serviceTones[index]}`}
+                >
+                  <div className="flex size-11 items-center justify-center rounded-lg border border-current/25 bg-black/10">
                     <Icon size={24} />
                   </div>
-                  <h3 className="mt-8 text-3xl leading-none">{service.title}</h3>
-                  <p className="mt-5 text-sm leading-6 opacity-75">{service.body}</p>
+                  <h3 className="mt-8 max-w-full [overflow-wrap:anywhere] text-2xl leading-[1.05] sm:text-3xl">{service.title}</h3>
+                  <p className="mt-5 max-w-xl text-sm leading-6 opacity-75">{service.body}</p>
                 </article>
               );
             })}

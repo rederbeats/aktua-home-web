@@ -42,6 +42,14 @@ const steps = [
   "Te acompañamos hasta la firma y el cierre."
 ];
 
+const serviceTones = [
+  "bg-[#847dff] text-white",
+  "bg-[#cacaca] text-black",
+  "bg-[#4b49aa] text-white",
+  "bg-[#dd90d8] text-black",
+  "bg-[#90b8f0] text-black"
+];
+
 export default async function HomePage({ searchParams }: { searchParams: Promise<{ lead?: string }> }) {
   const { lead } = await searchParams;
   const properties = await getPublishedProperties({ sort: "recent" });
@@ -62,39 +70,39 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/50 to-transparent" />
         </div>
 
-        <div className="container relative grid min-h-[calc(100svh-80px)] content-center gap-8 py-10 md:py-16 lg:grid-cols-[1fr_420px] lg:items-end">
-          <div className="max-w-3xl py-8 md:py-12">
-            <p className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-black uppercase text-red-100 backdrop-blur">
+        <div className="container relative flex min-h-[calc(100svh-72px)] flex-col items-center justify-center py-16 text-center md:py-24">
+          <div className="max-w-5xl">
+            <p className="origin-label inline-flex rounded-full border border-white/15 bg-white/10 px-6 py-2 text-white backdrop-blur">
               Inmobiliaria de Málaga
             </p>
-            <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.02] sm:text-5xl md:text-7xl">
+            <h1 className="origin-display mt-8 text-5xl leading-[0.92] sm:text-6xl md:text-[6rem]">
               Compra, vende y firma con todo bajo control.
             </h1>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-white/85 md:text-lg md:leading-8">
+            <p className="mx-auto mt-8 max-w-2xl text-base leading-7 text-white/70 md:text-lg md:leading-8">
               Somos de Málaga y trabajamos principalmente en Málaga y provincia. Te acompañamos en compraventa y servicios inmobiliarios, y gestionamos financiación hipotecaria en toda España.
             </p>
-            <div className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
-              <Link href="/comprar" className="inline-flex h-12 min-w-0 items-center justify-center gap-2 rounded-md bg-brand-red px-3 text-center text-sm font-black text-white shadow-[0_18px_45px_rgba(200,16,34,0.35)] transition hover:-translate-y-0.5 hover:bg-red-700 sm:px-5 sm:text-base">
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:justify-center">
+              <Link href="/comprar" className="origin-primary inline-flex h-12 min-w-0 items-center justify-center gap-2 px-4 text-center text-sm font-medium transition sm:px-5 sm:text-base">
                 Ver viviendas <ArrowRight size={18} />
               </Link>
-              <Link href="/vender-mi-vivienda" className="inline-flex h-12 min-w-0 items-center justify-center rounded-md bg-white px-3 text-center text-sm font-black text-brand-dark shadow-xl transition hover:-translate-y-0.5 sm:px-5 sm:text-base">
+              <Link href="/vender-mi-vivienda" className="inline-flex h-12 min-w-0 items-center justify-center rounded-lg border border-white px-3 text-center text-sm text-white transition hover:bg-white hover:text-black sm:px-5 sm:text-base">
                 Valorar mi vivienda
               </Link>
             </div>
-            <div className="mt-8 grid max-w-2xl grid-cols-1 gap-2 text-center min-[520px]:grid-cols-3 md:gap-3 md:text-left">
+            <div className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-3 text-center min-[520px]:grid-cols-3">
               <HeroStat value="Sin complicaciones" label="Nos ocupamos de todo" />
               <HeroStat value="Hasta 95%" label="Financiación" />
               <HeroStat value="Valoración" label="Gratuita y sin compromiso" />
             </div>
           </div>
 
-          <aside className="rounded-lg border border-white/25 bg-white/95 p-5 text-brand-dark shadow-[0_30px_80px_rgba(0,0,0,0.28)] backdrop-blur">
+          <aside className="origin-panel mt-10 w-full max-w-2xl rounded-2xl p-6 text-left md:p-8">
             <div className="flex items-center gap-3">
-              <div className="flex size-11 shrink-0 items-center justify-center rounded-md bg-red-50 text-brand-red">
+              <div className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-white text-black">
                 <MessageCircle size={22} />
               </div>
               <div>
-                <h2 className="text-xl font-black">Hablemos de tu operación</h2>
+                <h2 className="text-2xl">Hablemos de tu operación</h2>
                 <p className="text-sm text-neutral-600">Te respondemos con una primera orientación.</p>
               </div>
             </div>
@@ -106,7 +114,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
       </section>
 
       <section className="relative z-10 -mt-4 pb-6 md:-mt-8">
-        <div className="container grid gap-3 rounded-lg border border-black/10 bg-white p-3 shadow-[0_22px_70px_rgba(17,17,17,0.12)] md:grid-cols-4">
+        <div className="container grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-4">
           <TrustItem icon={<MapPin size={20} />} title="Compraventa" body="Compra, venta y seguimiento." />
           <TrustItem icon={<Home size={20} />} title="Financiación" body="Hipotecas en toda España." />
           <TrustItem icon={<KeyRound size={20} />} title="Documentación" body="Escrituras, pagos e impuestos." />
@@ -130,20 +138,20 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
             <p className="mt-4 leading-8 text-neutral-600">
               No se trata solo de vender o comprar una vivienda. Se trata de tener controlados la financiación, los documentos, los impuestos y los trámites legales.
             </p>
-            <Link href="/servicios" className="mt-6 inline-flex h-11 items-center gap-2 rounded-md bg-brand-dark px-4 font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-brand-red">
+            <Link href="/servicios" className="origin-primary mt-6 inline-flex h-11 items-center gap-2 px-4 font-medium transition">
               Ver servicios <ArrowRight size={17} />
             </Link>
           </div>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {services.map((service) => {
+            {services.map((service, index) => {
               const Icon = service.icon;
               return (
-                <article key={service.title} className="rounded-lg border border-black/10 bg-gradient-to-b from-white to-paper p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
-                  <div className="flex size-11 items-center justify-center rounded-md bg-red-50 text-brand-red">
+                <article key={service.title} className={`min-h-[260px] rounded-[30px] p-6 transition duration-200 hover:opacity-90 ${serviceTones[index]}`}>
+                  <div className="flex size-11 items-center justify-center rounded-lg border border-current/20 bg-black/10">
                     <Icon size={24} />
                   </div>
-                  <h3 className="mt-4 text-xl font-black">{service.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-neutral-600">{service.body}</p>
+                  <h3 className="mt-8 text-3xl leading-none">{service.title}</h3>
+                  <p className="mt-5 text-sm leading-6 opacity-75">{service.body}</p>
                 </article>
               );
             })}
@@ -157,7 +165,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
             <p className="section-kicker">Destacados</p>
             <h2 className="mt-2 text-3xl font-black md:text-5xl">Viviendas publicadas</h2>
           </div>
-          <Link href="/comprar" className="inline-flex h-11 items-center gap-2 rounded-md border border-black/15 bg-white px-4 font-bold shadow-sm transition hover:border-brand-red hover:text-brand-red">
+          <Link href="/comprar" className="inline-flex h-11 items-center gap-2 rounded-lg border border-white/25 px-4 text-white transition hover:bg-white hover:text-black">
             Ver todos <ArrowRight size={17} />
           </Link>
         </div>
@@ -169,7 +177,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
             ))}
           </div>
         ) : (
-          <div className="rounded-lg border border-black/10 bg-white p-8 text-center text-neutral-500 shadow-soft">
+          <div className="rounded-2xl border border-white/10 bg-[#2e2e2e] p-8 text-center text-neutral-500">
             Estamos preparando una selección de viviendas destacadas. Contacta con nosotros y te ayudamos a encontrar la opción adecuada.
           </div>
         )}
@@ -183,9 +191,9 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
           </div>
           <div className="grid gap-3 md:grid-cols-2">
             {steps.map((step, index) => (
-              <div key={step} className="rounded-lg border border-white/15 bg-white/10 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
-                <span className="text-sm font-black text-red-300">0{index + 1}</span>
-                <p className="mt-2 text-lg font-bold">{step}</p>
+              <div key={step} className="rounded-2xl border border-white/10 bg-[#2e2e2e] p-6">
+                <span className="origin-label text-white/50">0{index + 1}</span>
+                <p className="mt-4 text-lg text-white/85">{step}</p>
               </div>
             ))}
           </div>
@@ -197,19 +205,19 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
 
 function HeroStat({ value, label }: { value: string; label: string }) {
   return (
-    <div className="min-w-0 rounded-lg border border-white/15 bg-white/10 p-3 backdrop-blur">
-      <strong className="block [overflow-wrap:anywhere] text-lg font-black leading-tight text-white">{value}</strong>
-      <span className="mt-1 block break-words text-[11px] font-semibold leading-tight text-white/70 md:text-xs">{label}</span>
+    <div className="min-w-0 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur">
+      <strong className="origin-display block [overflow-wrap:anywhere] text-xl leading-tight text-white">{value}</strong>
+      <span className="origin-label mt-2 block break-words text-white/55">{label}</span>
     </div>
   );
 }
 
 function TrustItem({ icon, title, body }: { icon: React.ReactNode; title: string; body: string }) {
   return (
-    <article className="flex gap-3 rounded-md bg-paper p-4 transition hover:bg-red-50">
-      <div className="mt-1 text-brand-red">{icon}</div>
+    <article className="flex gap-3 bg-[#1b1c1d] p-5 transition hover:bg-[#2e2e2e]">
+      <div className="mt-1 text-white">{icon}</div>
       <div>
-        <h2 className="font-black">{title}</h2>
+        <h2 className="text-lg">{title}</h2>
         <p className="mt-1 text-sm text-neutral-600">{body}</p>
       </div>
     </article>

@@ -9,15 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#111111",
-        paper: "#f7f7f6",
+        ink: "#f5f5f7",
+        paper: "#090a0b",
         brand: {
-          red: "#c81022",
-          dark: "#050505"
+          red: "#847dff",
+          dark: "#0f1011"
         }
       },
       boxShadow: {
-        soft: "0 16px 45px rgba(17, 17, 17, 0.08)"
+        soft: "none"
       }
     }
   },

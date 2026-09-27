@@ -98,7 +98,7 @@ export default async function NewBuildPage({ searchParams }: { searchParams: Pro
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="#contacto-obra-nueva"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-brand-red px-5 py-3 text-center font-black text-white shadow-[0_18px_45px_rgba(200,16,34,0.35)] transition hover:-translate-y-0.5 hover:bg-red-700"
+                className="origin-primary inline-flex min-h-12 items-center justify-center gap-2 px-5 py-3 text-center font-medium transition"
               >
                 Quiero comercializar mi promoción <ArrowRight className="shrink-0" size={18} />
               </Link>
@@ -106,7 +106,7 @@ export default async function NewBuildPage({ searchParams }: { searchParams: Pro
                 href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent("Hola, quiero información para comercializar una promoción de obra nueva.")}`}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-green-600 px-5 py-3 text-center font-bold text-white transition hover:-translate-y-0.5 hover:bg-green-700"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white px-5 py-3 text-center text-white transition hover:bg-white hover:text-black"
               >
                 <MessageCircle size={19} /> Hablar por WhatsApp
               </a>
@@ -196,7 +196,7 @@ export default async function NewBuildPage({ searchParams }: { searchParams: Pro
                 href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent("Hola, quiero información para comercializar una promoción de obra nueva.")}`}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-3 inline-flex min-h-11 items-center gap-2 rounded-md bg-green-600 px-4 font-bold text-white transition hover:bg-green-700"
+                className="origin-primary mt-3 inline-flex min-h-11 items-center gap-2 px-4 font-medium transition"
               >
                 <MessageCircle size={18} /> Contactar por WhatsApp
               </a>

@@ -62,7 +62,7 @@ export default async function PropertyDetailPage({
               href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(`Hola, quiero información sobre ${property.title}.`)}`}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex h-11 items-center gap-2 rounded-md bg-green-600 px-4 font-bold text-white shadow-sm transition hover:-translate-y-0.5"
+              className="origin-primary inline-flex h-11 items-center gap-2 px-4 font-medium transition"
             >
               <MessageCircle size={18} /> WhatsApp
             </a>

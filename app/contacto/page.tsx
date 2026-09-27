@@ -32,7 +32,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
             href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent("Hola, contacto desde la web de AKTUA HOME.")}`}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center justify-center gap-2 rounded-md bg-green-600 p-4 font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-green-700"
+            className="origin-primary flex items-center justify-center gap-2 p-4 font-medium transition"
           >
             <MessageCircle size={20} /> Escribir por WhatsApp
           </a>

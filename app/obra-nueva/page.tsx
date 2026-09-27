@@ -60,10 +60,10 @@ const services = [
 
 const serviceTones = [
   "bg-[#c81022]",
-  "bg-[#2f506f]",
-  "bg-[#163638]",
-  "bg-[#d6a756] text-black",
-  "bg-[#681522]",
+  "bg-[#4a171f]",
+  "bg-[#292123]",
+  "bg-[#e7c9cc] text-black",
+  "bg-[#6b101d]",
   "bg-[#3f4041]"
 ];
 
@@ -160,7 +160,7 @@ export default async function NewBuildPage({ searchParams }: { searchParams: Pro
         </div>
       </section>
 
-      <section className="bg-[#2f506f] py-14 text-white md:py-20">
+      <section className="bg-[#4a171f] py-14 text-white md:py-20">
         <div className="container grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
           <div>
             <p className="section-kicker text-red-300">Cómo trabajamos</p>

@@ -5,13 +5,13 @@ import type { PublicPropertyCard as PropertyCardType } from "@/lib/properties/pu
 
 export function PropertyCard({ property }: { property: PropertyCardType }) {
   return (
-    <article className="group overflow-hidden rounded-2xl border border-white/10 border-t-[#c81022] border-t-2 bg-[#263039] transition duration-200 hover:bg-[#30404b]">
+    <article className="group overflow-hidden rounded-2xl border border-white/10 border-t-[#c81022] border-t-2 bg-[#2a2527] transition duration-200 hover:bg-[#393033]">
       <Link href={`/comprar/${property.slug}`} className="block focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black">
         <div className="relative aspect-[4/3] bg-neutral-100">
           <Image src={property.imageUrl} alt={property.title} fill className="object-cover transition duration-500 group-hover:scale-105" />
           <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/50 to-transparent" />
           {property.isFeatured ? (
-            <span className="origin-label absolute left-3 top-3 rounded-full bg-[#d6a756] px-3 py-1 text-black">
+            <span className="origin-label absolute left-3 top-3 rounded-full bg-[#e7c9cc] px-3 py-1 text-black">
               Destacado
             </span>
           ) : null}

@@ -27,7 +27,7 @@ const qualities = [
   { number: "06", title: "Orientación y luz", body: "Distribuciones que aprovechan la iluminación natural." }
 ];
 
-const statTones = ["bg-[#c81022]", "bg-[#2f506f]", "bg-[#d6a756] text-black", "bg-[#163638]"];
+const statTones = ["bg-[#c81022]", "bg-[#4a171f]", "bg-[#e7c9cc] text-black", "bg-[#292123]"];
 
 export default async function ResidentialDemoPage({ searchParams }: { searchParams: Promise<{ lead?: string }> }) {
   const { lead } = await searchParams;
@@ -36,7 +36,7 @@ export default async function ResidentialDemoPage({ searchParams }: { searchPara
     <div className="w-full max-w-[100vw] overflow-x-hidden bg-[#0f1011] font-sans text-[#f5f5f7]">
       {lead === "sent" ? <MetaPixelEvent eventName="Lead" parameters={{ content_name: "Demo Residencial Alborán", status: "lead_sent" }} /> : null}
 
-      <div className="border-b border-white/10 bg-[#681522]">
+      <div className="border-b border-white/10 bg-[#6b101d]">
         <div className="mx-auto flex min-h-10 w-[calc(100%_-_32px)] max-w-[1280px] items-center justify-between gap-4 py-2 font-mono text-xs uppercase text-white/70">
           <span>Demo comercial · Contenido ficticio</span>
           <span className="hidden sm:inline">Microsite de muestra para promotoras</span>
@@ -85,7 +85,7 @@ export default async function ResidentialDemoPage({ searchParams }: { searchPara
         </div>
       </section>
 
-      <section id="promocion" className="scroll-mt-28 bg-[#2f506f] py-24 md:py-32">
+      <section id="promocion" className="scroll-mt-28 bg-[#4a171f] py-24 md:py-32">
         <div className="mx-auto w-[calc(100%_-_32px)] max-w-[1280px]">
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
             <div><p className="text-sm text-[#c81022]">El proyecto</p><h2 className="mt-5 max-w-4xl text-5xl font-light leading-[1] sm:text-6xl md:text-[5rem]">Vivir dentro y fuera, sin elegir entre ambos.</h2></div>
@@ -95,7 +95,7 @@ export default async function ResidentialDemoPage({ searchParams }: { searchPara
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#1b1c1d]">
               <Image src="/assets/demo-obra-nueva-interior.png" alt="Interior luminoso de una vivienda de Residencial Alborán" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 65vw" />
             </div>
-            <div className="flex flex-col justify-between rounded-2xl bg-[#d6a756] p-7 text-black md:p-9">
+            <div className="flex flex-col justify-between rounded-2xl bg-[#e7c9cc] p-7 text-black md:p-9">
               <span className="flex size-12 items-center justify-center rounded-xl bg-black text-white"><Sun size={22} /></span>
               <div className="mt-16">
                 <p className="text-3xl font-light leading-tight">La casa continúa más allá de sus paredes.</p>
@@ -108,7 +108,7 @@ export default async function ResidentialDemoPage({ searchParams }: { searchPara
         </div>
       </section>
 
-      <section id="viviendas" className="scroll-mt-28 bg-[#163638] py-24 md:py-32">
+      <section id="viviendas" className="scroll-mt-28 bg-[#292123] py-24 md:py-32">
         <div className="mx-auto w-[calc(100%_-_32px)] max-w-[1280px]">
           <p className="text-sm text-[#c81022]">Tipologías</p>
           <div className="mt-5 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
@@ -132,28 +132,28 @@ export default async function ResidentialDemoPage({ searchParams }: { searchPara
 
       <section id="calidades" className="scroll-mt-28 bg-[#0f1011] py-24 md:py-32">
         <div className="mx-auto grid w-[calc(100%_-_32px)] max-w-[1280px] gap-16 lg:grid-cols-[0.72fr_1.28fr]">
-          <div><p className="text-sm text-[#e85d5d]">Calidades y bienestar</p><h2 className="mt-5 text-5xl font-light leading-[1] sm:text-6xl">Todo lo esencial, bien resuelto.</h2><p className="mt-7 max-w-md text-lg leading-8 text-white/55">Características técnicas convertidas en confort, ahorro y una vida cotidiana más sencilla.</p></div>
+          <div><p className="text-sm text-[#e06a73]">Calidades y bienestar</p><h2 className="mt-5 text-5xl font-light leading-[1] sm:text-6xl">Todo lo esencial, bien resuelto.</h2><p className="mt-7 max-w-md text-lg leading-8 text-white/55">Características técnicas convertidas en confort, ahorro y una vida cotidiana más sencilla.</p></div>
           <div className="border-t border-white/20">
-            {qualities.map((quality) => <article key={quality.title} className="grid gap-4 border-b border-white/20 py-6 sm:grid-cols-[42px_0.75fr_1.25fr] sm:items-start"><span className="text-xs text-[#d6a756]">{quality.number}</span><h3 className="text-xl font-light">{quality.title}</h3><p className="leading-7 text-white/50">{quality.body}</p></article>)}
+            {qualities.map((quality) => <article key={quality.title} className="grid gap-4 border-b border-white/20 py-6 sm:grid-cols-[42px_0.75fr_1.25fr] sm:items-start"><span className="text-xs text-[#e7c9cc]">{quality.number}</span><h3 className="text-xl font-light">{quality.title}</h3><p className="leading-7 text-white/50">{quality.body}</p></article>)}
           </div>
         </div>
       </section>
 
-      <section id="ubicacion" className="scroll-mt-28 bg-[#681522] py-24 text-white md:py-32">
+      <section id="ubicacion" className="scroll-mt-28 bg-[#6b101d] py-24 text-white md:py-32">
         <div className="mx-auto grid w-[calc(100%_-_32px)] max-w-[1280px] gap-12 lg:grid-cols-[1fr_0.72fr] lg:items-end">
           <div><p className="text-sm text-[#e84858]">Málaga</p><h2 className="mt-5 max-w-4xl text-5xl font-light leading-[1] sm:text-6xl md:text-[5rem]">Cerca de la ciudad. Cerca del mar.</h2><p className="mt-7 max-w-2xl text-lg leading-8 text-white/55">Una ubicación de ejemplo que combina tranquilidad, servicios cotidianos y conexiones rápidas.</p><div className="mt-12 grid grid-cols-3 gap-3"><LocationTime value="8 min" label="Servicios" /><LocationTime value="15 min" label="Centro" /><LocationTime value="20 min" label="Aeropuerto" /></div></div>
-          <div className="flex min-h-[360px] items-center justify-center rounded-2xl bg-[#d6a756] p-8 text-center text-black"><div><span className="mx-auto flex size-16 items-center justify-center rounded-xl bg-black text-white"><MapPin size={29} /></span><p className="mt-6 text-2xl font-light">Málaga, España</p><p className="mt-2 text-sm text-black/55">Ubicación ficticia para demostración</p></div></div>
+          <div className="flex min-h-[360px] items-center justify-center rounded-2xl bg-[#e7c9cc] p-8 text-center text-black"><div><span className="mx-auto flex size-16 items-center justify-center rounded-xl bg-black text-white"><MapPin size={29} /></span><p className="mt-6 text-2xl font-light">Málaga, España</p><p className="mt-2 text-sm text-black/55">Ubicación ficticia para demostración</p></div></div>
         </div>
       </section>
 
-      <section id="informacion" className="scroll-mt-28 bg-[#2f506f] py-24 md:py-32">
+      <section id="informacion" className="scroll-mt-28 bg-[#4a171f] py-24 md:py-32">
         <div className="mx-auto grid w-[calc(100%_-_32px)] max-w-[1280px] gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-          <div><p className="text-sm text-[#f0c36d]">Solicita información</p><h2 className="mt-5 text-5xl font-light leading-[1] sm:text-6xl md:text-[4.75rem]">Tu próxima casa empieza aquí.</h2><p className="mt-7 max-w-xl text-lg leading-8 text-white/55">Déjanos tus datos para recibir planos, memoria de calidades y disponibilidad.</p><div className="mt-12 rounded-2xl bg-[#163638] p-7"><p className="text-xs text-white/40">Comercializa</p><p className="mt-2 text-xl">{siteConfig.brandName}</p><p className="mt-2 text-sm text-white/50">{siteConfig.contact.phone}<br />{siteConfig.contact.email}</p></div></div>
+          <div><p className="text-sm text-[#f0b1b7]">Solicita información</p><h2 className="mt-5 text-5xl font-light leading-[1] sm:text-6xl md:text-[4.75rem]">Tu próxima casa empieza aquí.</h2><p className="mt-7 max-w-xl text-lg leading-8 text-white/55">Déjanos tus datos para recibir planos, memoria de calidades y disponibilidad.</p><div className="mt-12 rounded-2xl bg-[#292123] p-7"><p className="text-xs text-white/40">Comercializa</p><p className="mt-2 text-xl">{siteConfig.brandName}</p><p className="mt-2 text-sm text-white/50">{siteConfig.contact.phone}<br />{siteConfig.contact.email}</p></div></div>
           <aside className="rounded-2xl bg-[#171719] p-6 md:p-10"><h3 className="text-3xl font-light">Quiero recibir el dossier</h3><p className="mt-3 max-w-xl leading-7 text-white/50">Indica qué tipología te interesa y nuestro equipo comercial se pondrá en contacto contigo.</p><div className="mt-7 [&_button]:rounded-xl [&_button]:shadow-none [&_input]:rounded-xl [&_textarea]:rounded-xl"><LeadForm type="information" sourcePath="/demo/residencial-alboran" status={lead} /></div></aside>
         </div>
       </section>
 
-      <section className="border-t border-white/10 bg-[#090a0b] py-8"><div className="mx-auto flex w-[calc(100%_-_32px)] max-w-[1280px] flex-wrap items-center justify-between gap-4 text-sm text-white/55"><p><strong className="font-normal text-white">Residencial Alborán</strong> · Proyecto ficticio de demostración</p><Link href="/obra-nueva" className="inline-flex items-center gap-2 text-[#e85d5d]">Comercialización por AKTUA HOME <ArrowUpRight size={16} /></Link></div></section>
+      <section className="border-t border-white/10 bg-[#090a0b] py-8"><div className="mx-auto flex w-[calc(100%_-_32px)] max-w-[1280px] flex-wrap items-center justify-between gap-4 text-sm text-white/55"><p><strong className="font-normal text-white">Residencial Alborán</strong> · Proyecto ficticio de demostración</p><Link href="/obra-nueva" className="inline-flex items-center gap-2 text-[#e06a73]">Comercialización por AKTUA HOME <ArrowUpRight size={16} /></Link></div></section>
     </div>
   );
 }

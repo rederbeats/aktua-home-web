@@ -42,16 +42,16 @@ const services = [
 
 const serviceTones = [
   "bg-[#c81022] text-white",
-  "bg-[#2f506f] text-white",
-  "bg-[#d6a756] text-black",
-  "bg-[#681522] text-white",
-  "bg-[#163638] text-white"
+  "bg-[#4a171f] text-white",
+  "bg-[#e7c9cc] text-black",
+  "bg-[#6b101d] text-white",
+  "bg-[#292123] text-white"
 ];
 
 export default function ServicesPage() {
   return (
     <section className="container py-10 md:py-14">
-      <div className="rounded-2xl border border-white/10 bg-[#2f506f] p-6 md:p-8">
+      <div className="rounded-2xl border border-white/10 bg-[#4a171f] p-6 md:p-8">
         <p className="section-kicker">Servicios</p>
         <h1 className="mt-2 text-4xl font-black leading-tight md:text-6xl">Soluciones completas para tu operación inmobiliaria</h1>
         <p className="mt-4 max-w-3xl text-lg leading-8 text-neutral-600">

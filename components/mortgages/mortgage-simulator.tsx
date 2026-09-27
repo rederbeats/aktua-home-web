@@ -115,7 +115,7 @@ export function MortgageSimulator() {
               <ResultRow label="Importe total" value={formatCurrency(result.totalPaid)} />
             </div>
 
-            <div className="mt-8 rounded-2xl bg-[#d6a756] p-5 text-black">
+            <div className="mt-8 rounded-2xl bg-[#e7c9cc] p-5 text-black">
               <div className="flex items-center gap-2 text-sm font-black">
                 <Zap size={16} />
                 Ingresos recomendados

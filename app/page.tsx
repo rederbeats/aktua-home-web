@@ -44,10 +44,10 @@ const steps = [
 
 const serviceTones = [
   "bg-[#c81022] text-white",
-  "bg-[#2f506f] text-white",
-  "bg-[#d6a756] text-black",
-  "bg-[#681522] text-white",
-  "bg-[#163638] text-white"
+  "bg-[#4a171f] text-white",
+  "bg-[#e7c9cc] text-black",
+  "bg-[#6b101d] text-white",
+  "bg-[#292123] text-white"
 ];
 
 export default async function HomePage({ searchParams }: { searchParams: Promise<{ lead?: string }> }) {
@@ -122,17 +122,17 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         </div>
       </section>
 
-      <section className="bg-[#163638] py-12 md:py-16">
+      <section className="bg-[#292123] py-12 md:py-16">
         <div className="container">
           <div className="mb-5 max-w-3xl">
-            <p className="section-kicker text-[#f0c36d]">Buscar vivienda</p>
+            <p className="section-kicker text-[#f0b1b7]">Buscar vivienda</p>
             <h2 className="mt-2 text-3xl font-black leading-tight md:text-5xl">Encuentra una casa que encaje contigo, no solo con el presupuesto.</h2>
           </div>
           <PropertySearch />
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-[#151d29] py-14 md:py-20">
+      <section className="border-y border-white/10 bg-[#1c1819] py-14 md:py-20">
         <div className="container grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
             <p className="section-kicker">Servicios</p>
@@ -164,11 +164,11 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         </div>
       </section>
 
-      <section className="bg-[#21171b] py-14">
+      <section className="bg-[#25191c] py-14">
         <div className="container">
           <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="section-kicker text-[#d6a756]">Destacados</p>
+              <p className="section-kicker text-[#e7c9cc]">Destacados</p>
               <h2 className="mt-2 text-3xl font-black md:text-5xl">Viviendas publicadas</h2>
             </div>
             <Link href="/comprar" className="inline-flex h-11 items-center gap-2 rounded-lg border border-white/25 px-4 text-white transition hover:bg-white hover:text-black">
@@ -190,7 +190,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         </div>
       </section>
 
-      <section className="bg-[#681522] py-14 text-white md:py-20">
+      <section className="bg-[#6b101d] py-14 text-white md:py-20">
         <div className="container grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <p className="section-kicker text-red-300">Método {siteConfig.brandName}</p>
@@ -221,8 +221,8 @@ function HeroStat({ value, label }: { value: string; label: string }) {
 
 function TrustItem({ icon, title, body }: { icon: React.ReactNode; title: string; body: string }) {
   return (
-    <article className="flex gap-3 bg-[#1b1c1d] p-5 transition odd:border-t-2 odd:border-[#c81022] even:border-t-2 even:border-[#d6a756] hover:bg-[#2e2e2e]">
-      <div className="mt-1 text-[#e85d5d]">{icon}</div>
+    <article className="flex gap-3 bg-[#1b1c1d] p-5 transition odd:border-t-2 odd:border-[#c81022] even:border-t-2 even:border-[#e7c9cc] hover:bg-[#2e2e2e]">
+      <div className="mt-1 text-[#e06a73]">{icon}</div>
       <div>
         <h2 className="text-lg">{title}</h2>
         <p className="mt-1 text-sm text-neutral-600">{body}</p>
